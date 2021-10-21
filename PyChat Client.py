@@ -35,6 +35,10 @@ def thread_sending():
             my_socket.shutdown(2)    # 0 = done receiving, 1 = done sending, 2 = both
         if message_to_send == "/clear":
             os.system('cls' if os.name == 'nt' else 'clear')
+            print("-----------------------------------")
+            print("-----Welcome to PY:Chat Client-----")
+            print("-----Developed By BlockWorks123----")
+            print("-----------------------------------")
         else:
             message_to_send = nickname + " : " + message_to_send
             my_socket.send(message_to_send.encode())
