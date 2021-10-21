@@ -24,6 +24,8 @@ while not nickname:
 def thread_sending():
     while True:
         message_to_send = input("]")
+        if message_to_send == "ez":
+            my_socket.send("your personality shines brighter than the sun")
         if message_to_send == "/shutdown":
             exit()
         if message_to_send == "/help":
