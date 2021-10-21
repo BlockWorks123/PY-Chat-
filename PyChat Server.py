@@ -1,26 +1,37 @@
-#server.py
-#james was here 2
+#Library Define
 import socket
 import threading
+
+#Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 PORT = 8000
 ADDRESS = "127.0.1.1"
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
+
+#Welcome message
+print("---------------------------------")
+print("----Welcome To PY:Chat Server----")
+print("----Developed By BlockWorks123---")
+print("---------------------------------")
+
+#Socket listening for message
 def accept_loop():
     while True:
         my_socket.listen()
         client, client_address = my_socket.accept()
         broadcast_list.append(client)
         start_listenning_thread(client)
-        
+
+#Socket listening for nickname     
 def start_listenning_thread(client):
     client_thread = threading.Thread(
             target=listen_thread,
-            args=(client,) #the list of argument for the function
+            args=(client,)
         )
     client_thread.start()
-    
+
+#Client message receiver and broadcaster
 def listen_thread(client):
     while True:
         message = client.recv(1024).decode()
@@ -30,7 +41,7 @@ def listen_thread(client):
         else:
             print(f"client has been disconnected : {client}")
             return
-        
+#Server "client diconnect" message
 def broadcast(message):
     for client in broadcast_list:
         try:

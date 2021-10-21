@@ -4,10 +4,10 @@ import socket
 import threading
 
 #Welcome Message
-print("----------------------------------")
-print("------Welcome To PY:Chat 1.1------")
-print("----Developed By BlockWorks123----")
-print("----------------------------------")
+print("-----------------------------------")
+print("-----Welcome to PY:Chat Client-----")
+print("-----Developed By BlockWorks123----")
+print("-----------------------------------")
 
 #Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
