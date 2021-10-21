@@ -24,15 +24,19 @@ while not nickname:
 def thread_sending():
     while True:
         message_to_send = input("]")
+        if message_to_send == "/shutdown":
+            exit()
         if message_to_send == "/help":
             print("/clear -- clears all messages")
             print("/help -- Shows all commands")
             print("/disconnect -- Disconnects client")
             print("/reconnect -- Reconnects Client")
         if message_to_send == "/reconnect":
-            my_socket.connect((host, port))
+            print("Command not available")
+            # my_socket.connect((host, port))
         if message_to_send == "/disconnect":
-            my_socket.shutdown(2)    # 0 = done receiving, 1 = done sending, 2 = both
+            print("Command not available")
+            #my_socket.shutdown(2)    # 0 = done receiving, 1 = done sending, 2 = both
         if message_to_send == "/clear":
             os.system('cls' if os.name == 'nt' else 'clear')
             print("-----------------------------------")
@@ -47,7 +51,12 @@ def thread_sending():
 def thread_receiving():
     while True:
         message = my_socket.recv(1024).decode()
-        print(message)
+        msg = message.find(nickname)
+        if msg == 0:
+            return           
+        else:
+            print(message)
+
         
 
 #Thread Define
