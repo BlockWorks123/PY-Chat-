@@ -10,7 +10,7 @@ print("---------------------------------")
 
 #Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-PORT = 8000
+PORT = 7500
 ADDRESS = "127.0.1.1"
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
