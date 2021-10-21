@@ -23,7 +23,7 @@ while not nickname:
 #Message Sending
 def thread_sending():
     while True:
-        message_to_send = input("")
+        message_to_send = input("]")
         if message_to_send == "/help":
             print("/clear -- clears all messages")
             print("/help -- Shows all commands")
