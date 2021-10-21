@@ -26,12 +26,18 @@ def thread_sending():
         message_to_send = input("")
         if message_to_send == "/help":
             print("/clear -- clears all messages")
-            print("")
+            print("/help -- Shows all commands")
+            print("/disconnect -- Disconnects client")
+            print("/reconnect -- Reconnects Client")
+        if message_to_send == "/reconnect":
+            my_socket.connect((host, port))
+        if message_to_send == "/disconnect":
+            my_socket.shutdown(2)    # 0 = done receiving, 1 = done sending, 2 = both
         if message_to_send == "/clear":
             os.system('cls' if os.name == 'nt' else 'clear')
         else:
             message_to_send = nickname + " : " + message_to_send
-        my_socket.send(message_to_send.encode())
+            my_socket.send(message_to_send.encode())
 
 #Message Receiving
 def thread_receiving():
