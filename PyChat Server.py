@@ -28,7 +28,7 @@ def accept_loop():
 def start_listenning_thread(client):
     client_thread = threading.Thread(
             target=listen_thread,
-            args=(client,)
+            args=(client,) #the list of argument for the function
         )
     client_thread.start()
 
