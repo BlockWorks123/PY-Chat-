@@ -1,3 +1,4 @@
+#PY:Chat Client
 #Library Define
 import os
 import socket
@@ -25,7 +26,10 @@ def thread_sending():
     while True:
         message_to_send = input("]")
         if message_to_send == "ez":
-            my_socket.send("your personality shines brighter than the sun")
+            movie_list = ['The Godfather', 'The Wizard of Oz', 'Citizen Kane', 'The Shawshank Redemption', 'Pulp Fiction']
+            secure_random = random.SystemRandom()
+            item = secure_random.choice(movie_list)
+            my_socket.send(item.encode())
         if message_to_send == "/shutdown":
             exit()
         if message_to_send == "/help":
