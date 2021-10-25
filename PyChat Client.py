@@ -1,5 +1,7 @@
 #PY:Chat Client
+
 #Library Define
+import random
 import os
 import socket
 import threading
@@ -26,7 +28,9 @@ def thread_sending():
     while True:
         message_to_send = input("]")
         if message_to_send == "ez":
-            print("ez")
+            letters = ['a', 'b', 'c', 'd', 'e', 'f']
+            random_index = random.randint(0,len(letters)-1)
+            print(letters[random_index])
         if message_to_send == "/shutdown":
             exit()
         if message_to_send == "/help":
