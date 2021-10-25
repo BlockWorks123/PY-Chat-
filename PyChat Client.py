@@ -2,6 +2,7 @@
 
 #Library Define
 import random
+from datetime import datetime
 import os
 import socket
 import threading
@@ -28,9 +29,14 @@ def thread_sending():
     while True:
         message_to_send = input("]")
         if message_to_send == "ez":
-            letters = ['a', 'b', 'c', 'd', 'e', 'f']
+            letters = ['PY:Chat is the best', 'Person 1: Whatsapp Person 2: What app?', 'Discord or Disstrack', 'BlockWorks123 who is that?', '2005 Person: Do you wana chat on Skype', 'Student: Why do we have to use teams?']
             random_index = random.randint(0,len(letters)-1)
+            my_socket.send(random_index.encode())
             print(letters[random_index])
+        if message_to_send == "/time":
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            print("Time:",current_time)
         if message_to_send == "/shutdown":
             exit()
         if message_to_send == "/help":
@@ -38,6 +44,8 @@ def thread_sending():
             print("/help -- Shows all commands")
             print("/disconnect -- Disconnects client")
             print("/reconnect -- Reconnects Client")
+            print("/shutdown -- Closes application")
+            print("/time -- Shows current time")
         if message_to_send == "/reconnect":
             print("Command not available")
             # my_socket.connect((host, port))
