@@ -1,4 +1,4 @@
-#PY:Chat Server 2.0
+#PY:Chat Server
 
 #Library Define
 import os 
