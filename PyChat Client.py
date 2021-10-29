@@ -6,7 +6,6 @@ from datetime import datetime
 import os
 import socket
 import threading
-
 #Welcome Message
 print("-----------------------------------")
 print("-----Welcome to PY:Chat Client-----")
