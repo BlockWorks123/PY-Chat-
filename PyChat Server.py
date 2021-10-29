@@ -1,6 +1,7 @@
 #PY:Chat Server
 
 #Library Define
+import os 
 import socket
 import threading
 #Welcome message
@@ -15,11 +16,25 @@ ADDRESS = "192.168.0.33"
 PORT = 12345
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
-
 #Command line
 command = input("]")
 if command == "/help":
     print("/help -- Shows all commands")
+if command == "/clear":
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("---------------------------------")
+    print("----Welcome To PY:Chat Server----")
+    print("----Developed By BlockWorks123---")
+    print("---------------------------------")
+else:
+    for client in broadcast_list:
+        try:
+            server_message = "Server Message" + ":" + command
+            client.send(server_message.encode())
+        except:
+            broadcast_list.remove(client)
+            print("Client removed",client)
+
 
 #Socket listening for message
 def accept_loop():
