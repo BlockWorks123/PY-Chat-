@@ -1,4 +1,5 @@
 #PY:Chat Client
+
 #Library Define
 import random
 from datetime import datetime
@@ -45,6 +46,7 @@ def thread_sending():
             print("/reconnect -- Reconnects Client")
             print("/shutdown -- Closes application")
             print("/time -- Shows current time")
+            print("/address -- Shows selected address")
         if message_to_send == "/reconnect":
             print("Command not available")
             # my_socket.connect((host, port))
@@ -57,6 +59,8 @@ def thread_sending():
             print("-----Welcome to PY:Chat Client-----")
             print("-----Developed By BlockWorks123----")
             print("-----------------------------------")
+        if message_to_send == "/address":
+            print("Address :", host)
         if message_to_send == "/nickname":
             print("Nickname : ",nickname)
         else:
