@@ -15,7 +15,7 @@ print("-----------------------------------")
 
 #Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = "84.53.169.97:443" 
+host = "192.168.0.33" 
 port = 12345
 my_socket.connect((host, port))
 
