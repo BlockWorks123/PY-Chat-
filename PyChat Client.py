@@ -5,6 +5,7 @@ import random
 from datetime import datetime
 import os
 import socket
+from socket import *
 import threading
 #Welcome Message
 print("-----------------------------------")

@@ -2,6 +2,7 @@
 
 #Library Define
 import socket
+from socket import *
 import threading
 #Welcome message
 print("---------------------------------")
