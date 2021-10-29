@@ -1,5 +1,4 @@
 #PY:Chat Client
-
 #Library Define
 import random
 from datetime import datetime
