@@ -58,6 +58,8 @@ def thread_sending():
             print("-----Welcome to PY:Chat Client-----")
             print("-----Developed By BlockWorks123----")
             print("-----------------------------------")
+        if message_to_send == "/nickname":
+            print("Nickname : ",nickname)
         else:
             message_to_send = nickname + " : " + message_to_send
             my_socket.send(message_to_send.encode())
