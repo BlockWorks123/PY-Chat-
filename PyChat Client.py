@@ -4,7 +4,7 @@
 import random
 from datetime import datetime
 import os
-import socket
+from socket import *
 import threading
 
 #Welcome Message
@@ -15,7 +15,7 @@ print("-----------------------------------")
 
 #Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = "127.0.0.1"
+host = "192.168.0.1"
 port = 8000
 my_socket.connect((host, port))
 
