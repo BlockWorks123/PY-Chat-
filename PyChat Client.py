@@ -59,7 +59,7 @@ def thread_sending():
             print("-----------------------------------")
         else:
             message_to_send = nickname + " : " + message_to_send
-            my_socket.send(message_to_send.encode())
+        my_socket.send(message_to_send.encode())
 
 #Message Receiving
 def thread_receiving():

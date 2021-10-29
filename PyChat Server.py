@@ -17,9 +17,11 @@ broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
 #Command line
-command = input("]")
-if command == "/help":
-    print("/help -- Shows all commands")
+def command_line():
+    command = input("]")
+    if command == "/help":
+        print("/help -- Shows all commands")
+    command_line()
 
 #Socket listening for message
 def accept_loop():
