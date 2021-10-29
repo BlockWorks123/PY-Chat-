@@ -18,6 +18,13 @@ PORT = 12345
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
+def command_send():
+    while True:
+        command = input("]")
+        if command == "/help":
+            print("/help -- Shows all commands")
+        command_send()
+
 #Socket listening for message
 def accept_loop():
     while True:
@@ -52,8 +59,4 @@ def broadcast(message):
         except:
             broadcast_list.remove(client)
             print("Client removed",client)
-while True:
-    command = input("]")
-    if command == "/help":
-        print("/help -- Shows all commands")
-    accept_loop()      
+accept_loop()      
