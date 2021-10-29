@@ -20,23 +20,24 @@ my_socket.bind((ADDRESS, PORT))
 
 #Command line
 def command_send():
-    command = input("]")
-    if command == "/help":
-        print("/help -- Shows all commands")
-    if command == "/clear":
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print("---------------------------------")
-        print("----Welcome To PY:Chat Server----")
-        print("----Developed By BlockWorks123---")
-        print("---------------------------------")
-    else:
-        for client in broadcast_list:
-            try:
-                server_message = "Server Message" + ":" + command
-                client.send(server_message.encode())
-            except:
-                broadcast_list.remove(client)
-                print("Client removed",client)
+    while True:
+        command = input("]")
+        if command == "/help":
+            print("/help -- Shows all commands")
+        if command == "/clear":
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("---------------------------------")
+            print("----Welcome To PY:Chat Server----")
+            print("----Developed By BlockWorks123---")
+            print("---------------------------------")
+        else:
+            for client in broadcast_list:
+                try:
+                    server_message = "Server Message" + ":" + command
+                    client.send(server_message.encode())
+                except:
+                    broadcast_list.remove(client)
+                    print("Client removed",client)
 
 #Socket listening for message
 def accept_loop():
