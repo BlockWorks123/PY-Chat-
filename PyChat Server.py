@@ -2,7 +2,7 @@
 
 #Library Define
 import socket
-from socket import *
+from socket import socket, AF_INET, SOCK_STREAM
 import threading
 #Welcome message
 print("---------------------------------")
