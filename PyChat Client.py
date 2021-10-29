@@ -61,6 +61,7 @@ def thread_sending():
         else:
             message_to_send = nickname + " : " + message_to_send
             my_socket.send(message_to_send.encode())
+            #normal message
 
 #Message Receiving
 def thread_receiving():

@@ -19,57 +19,56 @@ broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
 #Command line
-def command_send():
-    while True:
-        command = input("]")
-        if command == "/help":
-            print("/help -- Shows all commands")
-        if command == "/clear":
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print("---------------------------------")
-            print("----Welcome To PY:Chat Server----")
-            print("----Developed By BlockWorks123---")
-            print("---------------------------------")
-        else:
-            for client in broadcast_list:
-                try:
-                    server_message = "Server Message" + ":" + command
-                    client.send(server_message.encode())
-                except:
-                    broadcast_list.remove(client)
-                    print("Client removed",client)
+while True:
+    command = input("]")
+    if command == "/help":
+        print("/help -- Shows all commands")
+    if command == "/clear":
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("---------------------------------")
+        print("----Welcome To PY:Chat Server----")
+        print("----Developed By BlockWorks123---")
+        print("---------------------------------")
+    else:
+        for client in broadcast_list:
+            try:
+                server_message = "Server Message" + ":" + command
+                client.send(server_message.encode())
+            except:
+                broadcast_list.remove(client)
+                print("Client removed",client)
 #Socket listening for message
-def accept_loop():
-    while True:
-        my_socket.listen()
-        client, client_address = my_socket.accept()
-        broadcast_list.append(client)
-        start_listenning_thread(client)
+    def accept_loop():
+        while True:
+            my_socket.listen()
+            client, client_address = my_socket.accept()
+            broadcast_list.append(client)
+            start_listenning_thread(client)
 
 #Socket listening for nickname     
-def start_listenning_thread(client):
-    client_thread = threading.Thread(
-            target=listen_thread,
-            args=(client,) #the list of argument for the function
-        )
-    client_thread.start()
+    def start_listenning_thread(client):
+        client_thread = threading.Thread(
+                target=listen_thread,
+                args=(client,) #the list of argument for the function
+            )
+        client_thread.start()
 
 #Client message receiver and broadcaster
-def listen_thread(client):
-    while True:
-        message = client.recv(1024).decode()
-        if message:
-            print("Client Message>",message)
-            broadcast(message)
-        else:
-            print(f"client has been disconnected : {client}")
-            return
+    def listen_thread(client):
+        while True:
+            message = client.recv(1024).decode()
+            if message:
+                print("Client Message>",message)
+                broadcast(message)
+            else:
+                print(f"client has been disconnected : {client}")
+                return
 #Server "client diconnect" message
-def broadcast(message):
-    for client in broadcast_list:
-        try:
-            client.send(message.encode())
-        except:
-            broadcast_list.remove(client)
-            print("Client removed",client)
-accept_loop()
+    def broadcast(message):
+        for client in broadcast_list:
+            try:
+                client.send(message.encode())
+            except:
+                broadcast_list.remove(client)
+                print("Client removed",client)
+    accept_loop()
