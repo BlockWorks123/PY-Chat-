@@ -38,8 +38,6 @@ def command_send():
                 except:
                     broadcast_list.remove(client)
                     print("Client removed",client)
-command_send()
-
 #Socket listening for message
 def accept_loop():
     while True:
