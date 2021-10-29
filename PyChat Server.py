@@ -56,6 +56,7 @@ def broadcast(message):
     for client in broadcast_list:
         try:
             client.send(message.encode())
+            command_send()
         except:
             broadcast_list.remove(client)
             print("Client removed",client)
