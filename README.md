@@ -12,4 +12,4 @@ Client Commands
 Server Commands
 - /clear - Clears terminal
 - /help - Shows list of commands
-
+- /host - Shows host IP
