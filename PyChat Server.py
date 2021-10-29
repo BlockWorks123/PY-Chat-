@@ -1,4 +1,4 @@
-#PY:Chat Server
+#PY:Chat Server 2.0
 
 #Library Define
 import os 
@@ -38,6 +38,7 @@ def command_send():
                 except:
                     broadcast_list.remove(client)
                     print("Client removed",client)
+command_send()
 
 #Socket listening for message
 def accept_loop():

@@ -1,4 +1,4 @@
-#PY:Chat Client
+#PY:Chat Client 2.0
 
 #Library Define
 import random
