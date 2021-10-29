@@ -1,7 +1,7 @@
 #PY:Chat Server
 
 #Library Define
-from socket import *
+import socket
 import threading
 
 #Welcome message
@@ -12,7 +12,7 @@ print("---------------------------------")
 
 #Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ADDRESS = "192.168.0.1"
+ADDRESS = "192.168.0.33"
 PORT = 8000
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
