@@ -1,4 +1,4 @@
-#PY:Chat Server 4.0
+#PY:Chat Server
 
 #Library Define
 import socket
@@ -17,11 +17,9 @@ broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
 #Command line
-def command_line():
-    command = input("]")
-    if command == "/help":
-        print("/help -- Shows all commands")
-    command_line()
+command = input("]")
+if command == "/help":
+    print("/help -- Shows all commands")
 
 #Socket listening for message
 def accept_loop():
