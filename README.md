@@ -1,4 +1,4 @@
-# PY:Chat - Client & Server 2.2
+# PY:Chat - Client & Server 3.1.2
 
 Client Commands
 - /clear - Clears terminal 
@@ -12,4 +12,4 @@ Client Commands
 Server Commands
 - /clear - Clears terminal
 - /help - Shows list of commands
-- /host - Shows chosen IP address
+- /time - Shows current time
