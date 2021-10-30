@@ -8,7 +8,7 @@ import socket
 import threading
 
 #Terminal Size
-cmd = 'mode 35,50'
+cmd = 'mode 37,50'
 os.system(cmd)
 os.system("title PY:Chat 3.1.5")
 

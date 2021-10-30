@@ -1,4 +1,4 @@
-#PY:Chat Server 3.1.4
+#PY:Chat Server 3.1.5
 
 # Library Define
 from math import trunc
@@ -8,15 +8,15 @@ import socket
 import threading
 
 #Terminal Size
-cmd = 'mode 35,50'
+cmd = 'mode 37,50'
 os.system(cmd)
 os.system("title PY:Chat 3.1.5")
 
 #Welcome message
-print("---------------------------------")
-print("----Welcome To PY:Chat Server----")
-print("----Developed By BlockWorks123---")
-print("---------------------------------")
+print("-----------------------------------")
+print("-----Welcome To PY:Chat Server-----")
+print("-----Developed By BlockWorks123----")
+print("-----------------------------------")
 
 #Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
