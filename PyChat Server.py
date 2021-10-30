@@ -1,4 +1,4 @@
-#PY:Chat Server 3.0
+#PY:Chat Server 3.1
 
 #Library Define
 from math import trunc
@@ -55,6 +55,7 @@ def broadcast(message):
             broadcast_list.remove(client)
             print("Client removed",client)
     accept_loop()      
+
 while True:
     command = input("]")
     if command == "/help":
@@ -66,3 +67,4 @@ while True:
             except:
                 broadcast_list.remove(client)
                 print("Client removed",client)
+
