@@ -13,3 +13,4 @@ Server Commands
 - /clear - Clears terminal
 - /help - Shows list of commands
 - /time - Shows current time
+- /shutdown - Shutsdown the server
