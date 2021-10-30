@@ -6,10 +6,12 @@ from datetime import datetime
 import os 
 import socket
 import threading
+from os import system
 
 #Terminal Size
 cmd = 'mode 35,50'
 os.system(cmd)
+system("PY:Chat - 3.1.5")
 
 #Welcome message
 print("---------------------------------")
