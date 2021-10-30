@@ -1,4 +1,4 @@
-#PY:Chat Client 2.2
+#PY:Chat Client 3.0
 
 #Library Define
 import random
@@ -33,10 +33,6 @@ def thread_sending():
             random_index = random.randint(0,len(letters)-1)
             my_socket.send(random_index.encode())
             print(letters[random_index])
-        if message_to_send == "/time":
-            now = datetime.now()
-            current_time = now.strftime("%H:%M:%S")
-            print("Time:",current_time)
         if message_to_send == "/shutdown":
             exit()
         if message_to_send == "/help":
@@ -59,14 +55,17 @@ def thread_sending():
             print("-----Welcome to PY:Chat Client-----")
             print("-----Developed By BlockWorks123----")
             print("-----------------------------------")
+        if message_to_send == "/time":
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            print("Time : ",current_time)
         if message_to_send == "/address":
-            print("Address :", host)
+            print("Address : ", host)
         if message_to_send == "/nickname":
             print("Nickname : ",nickname)
         else:
             message_to_send = nickname + " : " + message_to_send
             my_socket.send(message_to_send.encode())
-            #normal message
 
 #Message Receiving
 def thread_receiving():

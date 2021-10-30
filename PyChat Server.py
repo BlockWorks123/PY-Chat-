@@ -1,4 +1,4 @@
-#PY:Chat Server 2.2
+#PY:Chat Server 3.0
 
 #Library Define
 from math import trunc
@@ -19,12 +19,6 @@ PORT = 12345
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
-def command_send():
-    while True:
-        command = input("]")
-        if command == "/help":
-            print("/help -- Shows all commands")
-        command_send()
 
 #Socket listening for message
 def accept_loop():
@@ -57,8 +51,18 @@ def broadcast(message):
     for client in broadcast_list:
         try:
             client.send(message.encode())
-            command_send()
         except:
             broadcast_list.remove(client)
             print("Client removed",client)
-accept_loop()      
+    accept_loop()      
+while True:
+    command = input("]")
+    if command == "/help":
+        print("/help -- Shows all commands")
+    else:
+        for client in broadcast_list:
+            try:
+                client.send(command.encode())
+            except:
+                broadcast_list.remove(client)
+                print("Client removed",client)
