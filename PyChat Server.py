@@ -1,4 +1,4 @@
-#PY:Chat Server 3.1.2
+#PY:Chat Server 3.1.3
 
 #Library Define
 from math import trunc
@@ -6,6 +6,10 @@ from datetime import datetime
 import os 
 import socket
 import threading
+
+#Terminal Size
+cmd = 'mode 35,50'
+os.system(cmd)
 
 #Welcome message
 print("---------------------------------")
@@ -68,6 +72,12 @@ while True:
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
         print("Time :",current_time)
+    if command == "/clear":
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("---------------------------------")
+        print("----Welcome To PY:Chat Server----")
+        print("----Developed By BlockWorks123---")
+        print("---------------------------------")
     else:
         for client in broadcast_list:
             try:
