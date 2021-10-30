@@ -1,4 +1,4 @@
-#PY:Chat Client 3.1.3
+#PY:Chat Client 3.1.4
 
 #Library Define
 import random
@@ -6,6 +6,10 @@ from datetime import datetime
 import os
 import socket
 import threading
+
+#Terminal Size
+cmd = 'mode 35,50'
+os.system(cmd)
 
 #Welcome Message
 print("-----------------------------------")

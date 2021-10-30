@@ -1,6 +1,6 @@
-#PY:Chat Server 3.1.3
+#PY:Chat Server 3.1.4
 
-#Library Define
+# Library Define
 from math import trunc
 from datetime import datetime
 import os 
@@ -66,6 +66,8 @@ while True:
     if command == "/help":
         print("/help -- Shows all commands")
         print("/time -- Shows current time")
+        print("/clear -- Clears terminal ")
+        print("/shutdown -- Shutsdown the server")
     if command == "/shutdown":
         exit()
     if command == "/time":
