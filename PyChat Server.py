@@ -1,7 +1,8 @@
-#PY:Chat Server 3.1
+#PY:Chat Server 3.1.2
 
 #Library Define
 from math import trunc
+from datetime import datetime
 import os 
 import socket
 import threading
@@ -60,6 +61,11 @@ while True:
     command = input("]")
     if command == "/help":
         print("/help -- Shows all commands")
+        print("/time -- Shows current time")
+    if command == "/time":
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        print("Time :",current_time)
     else:
         for client in broadcast_list:
             try:

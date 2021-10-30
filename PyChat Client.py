@@ -1,4 +1,4 @@
-#PY:Chat Client 3.1
+#PY:Chat Client 3.1.2
 
 #Library Define
 import random
@@ -58,11 +58,11 @@ def thread_sending():
         if message_to_send == "/time":
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
-            print("Time : ",current_time)
+            print("Time :",current_time)
         if message_to_send == "/address":
-            print("Address : ", host)
+            print("Address :", host)
         if message_to_send == "/nickname":
-            print("Nickname : ",nickname)
+            print("Nickname :",nickname)
         else:
             message_to_send = nickname + " : " + message_to_send
             my_socket.send(message_to_send.encode())
