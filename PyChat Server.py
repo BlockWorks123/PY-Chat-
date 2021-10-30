@@ -62,6 +62,8 @@ while True:
     if command == "/help":
         print("/help -- Shows all commands")
         print("/time -- Shows current time")
+    if command == "/shutdown":
+        exit()
     if command == "/time":
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")

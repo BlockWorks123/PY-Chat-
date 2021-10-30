@@ -71,11 +71,7 @@ def thread_sending():
 def thread_receiving():
     while True:
         message = my_socket.recv(1024).decode()
-        msg = message.find(nickname)
-        if msg == 0:
-            return           
-        else:
-            print(message)
+        print(message)
 
 #Thread Define
 thread_send = threading.Thread(target=thread_sending)
