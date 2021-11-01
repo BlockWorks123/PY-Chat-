@@ -1,4 +1,4 @@
-#PY:Chat Client 3.1.7
+#PY:Chat Client 3.2
 
 #Library Define
 import random
@@ -10,7 +10,7 @@ import threading
 #Terminal Size
 cmd = 'mode 37,50'
 os.system(cmd)
-os.system("title PY:Chat 3.1.7")
+os.system("title PY:Chat 3.2")
 
 #Welcome Message
 print("-----------------------------------")

@@ -1,4 +1,4 @@
-#PY:Chat Server 3.1.7
+#PY:Chat Server 3.2
 
 # Library Define
 from math import trunc
@@ -10,7 +10,7 @@ import threading
 #Terminal Size
 cmd = 'mode 37,50'
 os.system(cmd)
-os.system("title PY:Chat 3.1.7")
+os.system("title PY:Chat 3.2")
 
 #Welcome message
 print("-----------------------------------")
@@ -24,32 +24,6 @@ ADDRESS = "192.168.0.33"
 PORT = 12345
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
-
-command = input("]")
-if command == "/help":
-    print("/help -- Shows all commands")
-    print("/time -- Shows current time")
-    print("/clear -- Clears terminal ")
-    print("/shutdown -- Shutsdown the server")
-if command == "/shutdown":
-    exit()
-if command == "/time":
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("Time :",current_time)
-if command == "/clear":
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("---------------------------------")
-    print("----Welcome To PY:Chat Server----")
-    print("----Developed By BlockWorks123---")
-    print("---------------------------------")
-else:
-    for client in broadcast_list:
-        try:
-            client.send(command.encode())
-        except:
-            broadcast_list.remove(client)
-            print("Client removed",client)
 
 #Socket listening for message
 def accept_loop():

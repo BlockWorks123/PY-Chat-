@@ -1,4 +1,4 @@
-# PY:Chat - Client & Server 3.1.6
+# PY:Chat - Client & Server 3.2
 
 Client Commands
 - /clear - Clears terminal 
