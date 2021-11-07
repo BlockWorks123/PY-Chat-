@@ -45,12 +45,7 @@ def loop_a():
         print("----Developed By BlockWorks123---")
         print("---------------------------------")
     else:
-        for client in broadcast_list:
-            try:
-                client.send(command.encode())
-            except:
-                broadcast_list.remove(client)
-                print("Client removed",client)
+        print("hi")
 
 def loop_b():
     def accept_loop():
