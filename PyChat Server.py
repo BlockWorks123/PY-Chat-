@@ -89,6 +89,7 @@ def loop_b():
     accept_loop()      
 
 while True:
+    print("hi how are u")
     loop_a()
     loop_b()
 
