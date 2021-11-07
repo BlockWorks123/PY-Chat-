@@ -26,32 +26,32 @@ broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
 def loop_a():
-    while True:
-        command = input("]")
-        if command == "/help":
-            print("/help -- Shows all commands")
-            print("/time -- Shows current time")
-            print("/clear -- Clears terminal ")
-            print("/shutdown -- Shutsdown the server")
-        if command == "/shutdown":
-            exit()
-        if command == "/time":
-            now = datetime.now()
-            current_time = now.strftime("%H:%M:%S")
-            print("Time :",current_time)
-        if command == "/clear":
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print("---------------------------------")
-            print("----Welcome To PY:Chat Server----")
-            print("----Developed By BlockWorks123---")
-            print("---------------------------------")
-        else:
-            for client in broadcast_list:
-                try:
-                    client.send(command.encode())
-                except:
-                    broadcast_list.remove(client)
-                    print("Client removed",client)
+    command = input("]")
+    if command == "/help":
+        print("/help -- Shows all commands")
+        print("/time -- Shows current time")
+        print("/clear -- Clears terminal ")
+        print("/shutdown -- Shutsdown the server")
+    if command == "/shutdown":
+        exit()
+    if command == "/time":
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        print("Time :",current_time)
+    if command == "/clear":
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("---------------------------------")
+        print("----Welcome To PY:Chat Server----")
+        print("----Developed By BlockWorks123---")
+        print("---------------------------------")
+    else:
+        for client in broadcast_list:
+            try:
+                client.send(command.encode())
+            except:
+                broadcast_list.remove(client)
+                print("Client removed",client)
+
 def loop_b():
     def accept_loop():
         while True:
@@ -89,7 +89,7 @@ def loop_b():
     accept_loop()      
 
 while True:
-    print("hi how are u")
+    print("hi how are")
     loop_a()
     loop_b()
 
