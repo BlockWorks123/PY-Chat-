@@ -63,6 +63,8 @@ def thread_sending():
             print("Address :", host)
         if message_to_send == "/nickname":
             print("Nickname :",nickname)
+        if WindowsError:
+            exit()
         else:
             message_to_send = nickname + " : " + message_to_send
             my_socket.send(message_to_send.encode())
