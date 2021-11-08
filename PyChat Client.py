@@ -8,9 +8,9 @@ import socket
 import threading
 
 #Terminal Size
-cmd = 'mode 40,50'
+cmd = 'mode 37,50'
 os.system(cmd)
-os.system("title PY:Chat 4.3")
+os.system("title PY:Chat 4.3 Client")
 
 #Welcome Message
 print("-----------------------------------")
@@ -33,13 +33,6 @@ while not nickname:
 def thread_sending():
     while True:
         message_to_send = input("]")
-        if message_to_send == "ez":
-            letters = ['PY:Chat is the best', 'Person 1: Whatsapp Person 2: What app?', 'Discord or Disstrack', 'BlockWorks123 who is that?', '2005 Person: Do you wana chat on Skype', 'Student: Why do we have to use teams?']
-            random_index = random.randint(0,len(letters)-1)
-            my_socket.send(random_index.encode())
-            print(letters[random_index])
-        if message_to_send == "/shutdown":
-            exit()
         if message_to_send == "/help":
             print("/clear -- clears all messages")
             print("/help -- Shows all commands")
@@ -48,12 +41,14 @@ def thread_sending():
             print("/shutdown -- Closes application")
             print("/time -- Shows current time")
             print("/address -- Shows selected address")
+        if message_to_send == "/shutdown":
+            exit()
         if message_to_send == "/reconnect":
             print("Command not available")
             # my_socket.connect((host, port))
         if message_to_send == "/disconnect":
             print("Command not available")
-            #my_socket.shutdown(2)    # 0 = done receiving, 1 = done sending, 2 = both
+            my_socket.shutdown(2)    # 0 = done receiving, 1 = done sending, 2 = both
         if message_to_send == "/clear":
             os.system('cls' if os.name == 'nt' else 'clear')
             print("-----------------------------------")
