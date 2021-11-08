@@ -46,6 +46,7 @@ def loop_a():
         print("---------------------------------")
     else:
         print("hi")
+    loop_a()
 
 def loop_b():
     def accept_loop():
@@ -84,7 +85,6 @@ def loop_b():
     accept_loop()      
 
 while True:
-    print("hi how are")
     loop_a()
     loop_b()
 
