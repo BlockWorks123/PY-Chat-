@@ -1,4 +1,4 @@
-#PY:Chat Server 4.3
+#PY:Chat Server 4.4
 
 # Library Define
 from math import trunc
@@ -10,7 +10,7 @@ import threading
 #Terminal Size
 cmd = 'mode 40,50'
 os.system(cmd)
-os.system("title PY:Chat 4.3")
+os.system("title PY:Chat 4.4")
 
 #Welcome message
 print("-----------------------------------")
