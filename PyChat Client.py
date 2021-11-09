@@ -46,9 +46,8 @@ def thread_sending():
         if message_to_send == "/reconnect":
             print("Command not available")
             # my_socket.connect((host, port))
-        if message_to_send == "/disconnect":
-            print("Command not available")
-            #my_socket.shutdown(2)  # 0 = done receiving, 1 = done sending, 2 = both
+        if message_to_send == "/disconnect"
+            my_socket.close
         if message_to_send == "/clear":
             os.system('cls' if os.name == 'nt' else 'clear')
             print("-----------------------------------")
