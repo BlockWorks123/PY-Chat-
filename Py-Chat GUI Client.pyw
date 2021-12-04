@@ -1,4 +1,4 @@
-#https://www.dummies.com/programming/python/using-tkinter-widgets-in-python/
+#PY:Chat GUI Client 1.0
 from tkinter import *
 from tkinter import simpledialog
 import socket

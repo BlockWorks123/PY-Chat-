@@ -1,4 +1,4 @@
-#https://www.dummies.com/programming/python/using-tkinter-widgets-in-python/
+##PY:Chat GUI Sever 1.0
 import socket
 import threading
 
