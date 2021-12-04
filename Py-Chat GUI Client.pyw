@@ -38,6 +38,11 @@ def thread_sending():
         socket_message = nickname + " : " + button_message
         my_socket.send(socket_message.encode())
 
+def on_release(key):
+    if key == Key.enter:
+        thread_sending()
+with Listener(on_release=on_release) as listener:listener.join()
+
 e = Entry(root, width=50)
 e.grid(row=2,column=1)
 
@@ -56,10 +61,5 @@ thread_send = threading.Thread(target=thread_sending)
 thread_receive = threading.Thread(target=thread_receiving)
 thread_send.start()
 thread_receive.start()
-
-def on_release(key):
-    if key == Key.enter:
-        thread_sending
-with Listener(on_release=on_release) as listener:listener.join()
 
 root.mainloop()
