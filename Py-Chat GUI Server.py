@@ -1,27 +1,10 @@
-#PY:Chat Server 4.4
-
-# Library Define
-from math import trunc
-from datetime import datetime
-import os 
+#https://www.dummies.com/programming/python/using-tkinter-widgets-in-python/
 import socket
 import threading
 
-#Terminal Size
-cmd = 'mode 40,50'
-os.system(cmd)
-os.system("title PY:Chat 4.4")
-
-#Welcome message
-print("-----------------------------------")
-print("-----Welcome To PY:Chat Server-----")
-print("-----Developed By BlockWorks123----")
-print("-----------------------------------")
-
-#Socket Connection
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ADDRESS = "192.168.0.33" 
-PORT = 12345
+ADDRESS = "127.0.0.1" 
+PORT = 8000
 broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
 
@@ -59,5 +42,4 @@ def broadcast(message):
             broadcast_list.remove(client)
             print("Client removed",client)
 accept_loop()      
-
 
