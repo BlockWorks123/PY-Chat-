@@ -1,6 +1,5 @@
 #PY:Chat GUI Client 1.1
 
-from pynput.keyboard import Key, Listener
 from tkinter import *
 from tkinter import simpledialog
 import socket
@@ -37,11 +36,6 @@ def thread_sending():
         e.delete(0,END)
         socket_message = nickname + " : " + button_message
         my_socket.send(socket_message.encode())
-
-def on_release(key):
-    if key == Key.enter:
-        thread_sending()
-with Listener(on_release=on_release) as listener:listener.join()
 
 e = Entry(root, width=50)
 e.grid(row=2,column=1)
