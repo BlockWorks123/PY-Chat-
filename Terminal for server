@@ -1,4 +1,5 @@
 
+
 command = input("]")
 if command == "/help":
     print("/help -- Shows all commands")

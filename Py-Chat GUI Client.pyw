@@ -1,4 +1,5 @@
-#PY:Chat GUI Client 1.0
+#PY:Chat GUI Client 1.1
+
 from tkinter import *
 from tkinter import simpledialog
 import socket

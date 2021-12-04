@@ -1,4 +1,4 @@
-# PY:Chat GUI Client 1.0
+# PY:Chat GUI Client 1.1
 
 Client Commands
 - /clear -- Clears terminal 

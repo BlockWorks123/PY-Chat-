@@ -1,4 +1,5 @@
-##PY:Chat GUI Sever 1.0
+##PY:Chat GUI Sever 1.1
+
 import socket
 import threading
 
