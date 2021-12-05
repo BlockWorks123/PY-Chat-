@@ -6,29 +6,44 @@ import socket
 import threading
 import keyboard
 
-entry = Tk()
+def start_client():
+    print("hello")
 
-e1 = Entry(entry, width=20)
-e1.grid(row=1,column=1)
+first = Tk()  
+first.title('PY:Chat Launcher')
 
-e2 = Entry(entry, width=20)
-e2.grid(row=3,column=1)
+nameLabel = Label(first, text="Name: ")
+nameLabel.grid(row=0, column=0)
+nameEntry = Entry(first, width=25)
+nameEntry.grid(row=0, column=1)  
 
-entry.mainloop()
+#password label and password entry box
+ipLabel = Label(first,text="Address:")
+ipLabel.grid(row=1, column=0)  
+ipentry = Entry(first, width=25)
+ipentry.grid(row=1, column=1)  
+
+
+#login button
+loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
+
+first.mainloop()
 
 key = 0
 
 while True:
     if key == 1: 
         my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        host = "127.0.0.1" 
+        host = ipentry.get()
+        if host == "":
+            host = "127.0.0.1"
         port = 8000
         my_socket.connect((host, port))
 
         root = Tk()
         root.title('Py:Chat Client')
 
-        nickname = "Guest"
+        nickname = nameEntry.get()
 
         def thread_sending():
             button_message = e.get()
