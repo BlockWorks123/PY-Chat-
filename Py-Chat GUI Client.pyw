@@ -6,8 +6,12 @@ import socket
 import threading
 import keyboard
 
+key = 0
+
 def start_client():
-    print("hello")
+    nameEntry.delete(0,END)
+    ipentry.delete(0,END)
+    key = 1
 
 first = Tk()  
 first.title('PY:Chat Launcher')
@@ -28,8 +32,6 @@ ipentry.grid(row=1, column=1)
 loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
 
 first.mainloop()
-
-key = 0
 
 while True:
     if key == 1: 
