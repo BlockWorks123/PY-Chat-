@@ -6,7 +6,7 @@ import socket
 import threading
 import keyboard
 
-def client_activate():
+def client_host():
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = ipentry.get()
     port = 8000
@@ -61,7 +61,7 @@ def client_activate():
 def start_client():
     nameEntry.delete(0,END)
     ipentry.delete(0,END)
-    client_activate()
+    client_host()
 
 first = Tk()  
 first.title('PY:Chat Launcher')
