@@ -10,6 +10,7 @@ import keyboard
 def start_client():
     nameEntry.delete(0,END)
     ipentry.delete(0,END)
+    client_host()
 
 first = Tk()  
 first.title('PY:Chat Launcher')
@@ -28,9 +29,16 @@ loginButton = Button(first, text="Login", command=start_client).grid(row=4, colu
 
 first.mainloop()
 
+def client_host():
+    print("hi")
+    first.quit()
+
+
+
 
 '''
 def client_host():
+    
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = "127.0.0.1"
     port = 8000
