@@ -6,16 +6,40 @@ import socket
 import threading
 import keyboard
 
+#Launcher
+def start_client():
+    nameEntry.delete(0,END)
+    ipentry.delete(0,END)
+
+first = Tk()  
+first.title('PY:Chat Launcher')
+
+nameLabel = Label(first, text="Name: ")
+nameLabel.grid(row=0, column=0)
+nameEntry = Entry(first, width=25)
+nameEntry.grid(row=0, column=1)  
+
+ipLabel = Label(first,text="Address:")
+ipLabel.grid(row=1, column=0)  
+ipentry = Entry(first, width=25)
+ipentry.grid(row=1, column=1)  
+
+loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
+
+first.mainloop()
+
+
+'''
 def client_host():
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = ipentry.get()
+    host = "127.0.0.1"
     port = 8000
     my_socket.connect((host, port))
 
     root = Tk()
     root.title('Py:Chat Client')
 
-    nickname = nameEntry.get()
+    nickname = "James"
 
     def thread_sending():
         button_message = e.get()
@@ -58,27 +82,4 @@ def client_host():
 
     root.mainloop()
 
-def start_client():
-    nameEntry.delete(0,END)
-    ipentry.delete(0,END)
-    client_host()
-
-first = Tk()  
-first.title('PY:Chat Launcher')
-
-nameLabel = Label(first, text="Name: ")
-nameLabel.grid(row=0, column=0)
-nameEntry = Entry(first, width=25)
-nameEntry.grid(row=0, column=1)  
-
-#password label and password entry box
-ipLabel = Label(first,text="Address:")
-ipLabel.grid(row=1, column=0)  
-ipentry = Entry(first, width=25)
-ipentry.grid(row=1, column=1)  
-
-
-#login button
-loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
-
-first.mainloop()
+'''
