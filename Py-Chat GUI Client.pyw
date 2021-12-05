@@ -10,7 +10,7 @@ import keyboard
 def start_client():
     nameEntry.delete(0,END)
     ipentry.delete(0,END)
-    client_host()
+    first.quit()
 
 first = Tk()  
 first.title('PY:Chat Launcher')
@@ -28,13 +28,6 @@ ipentry.grid(row=1, column=1)
 loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
 
 first.mainloop()
-
-def client_host():
-    print("hi")
-    first.quit()
-
-
-
 
 '''
 def client_host():
