@@ -37,14 +37,18 @@ def thread_sending():
         socket_message = nickname + " : " + button_message
         my_socket.send(socket_message.encode())
 
+
+menu_widget = Menu(root)
+menu_widget.grid(rows=1,column=2,columnspan=2)
+
 e = Entry(root, width=50)
-e.grid(row=2,column=1)
+e.grid(row=3,column=1)
 
 button1 = Button(root, text="Send", command=thread_sending)
-button1.grid(row=2,column=2)
+button1.grid(row=3,column=2)
 
 list1 = Listbox(root, width=55, height=20)
-list1.grid(row=1,column=1, columnspan=2)
+list1.grid(row=2,column=1, columnspan=2)
 
 def thread_receiving():
     while True:
