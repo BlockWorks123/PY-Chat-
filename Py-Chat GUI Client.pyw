@@ -61,7 +61,7 @@ def client_activate():
 def start_client():
     nameEntry.delete(0,END)
     ipentry.delete(0,END)
-    key = 1
+    client_activate()
 
 first = Tk()  
 first.title('PY:Chat Launcher')
