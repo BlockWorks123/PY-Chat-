@@ -8,7 +8,6 @@ import keyboard
 
 #Client
 def client_host():
-    first.quit()
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = "127.0.0.1"
     port = 8000
@@ -65,6 +64,7 @@ def start_client():
     nameEntry.delete(0,END)
     ipentry.delete(0,END)
     client_host()
+    first.quit()
 
 first = Tk()  
 first.title('PY:Chat Launcher')
