@@ -1,10 +1,9 @@
 #PY:Chat GUI Client 1.2.1
 
 from tkinter import *
-from tkinter import simpledialog
-import socket
 import threading
-import keyboard
+import socket
+import os
 
 #Client
 def client_host():
@@ -46,6 +45,7 @@ def client_host():
 
     def run_server():
         print("hi")
+        os.system('python my_file.py')
 
     menubar = Menu(root)
     filemenu = Menu(menubar, tearoff=0)
