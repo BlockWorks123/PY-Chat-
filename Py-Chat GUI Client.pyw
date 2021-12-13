@@ -5,11 +5,12 @@ import threading
 import socket
 import os
 
+server_host = "127.0.0.1"
 #Client
-def client_host():
+def client_host(server_host):
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 8000
-    host = "127.0.0.1"
+    host = server_host
     my_socket.connect((host, port))
 
     nickname = "James"
@@ -45,7 +46,7 @@ def client_host():
 
     def run_server():
         print("hi")
-        os.system('python my_file.py')
+        os.system('Py-Chat GUI Server.py')
 
     menubar = Menu(root)
     filemenu = Menu(menubar, tearoff=0)
