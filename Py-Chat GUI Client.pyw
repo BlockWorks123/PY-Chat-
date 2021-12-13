@@ -62,7 +62,7 @@ def client_host():
 #Launcher
 def start_client():
     nameEntry.delete(0,END)
-    ipentry.delete(0,END)
+    ipEntry.delete(0,END)
     client_host()
     first.quit()
 
@@ -76,8 +76,8 @@ nameEntry.grid(row=0, column=1)
 
 ipLabel = Label(first,text="Address:")
 ipLabel.grid(row=1, column=0)  
-ipentry = Entry(first, width=25)
-ipentry.grid(row=1, column=1)  
+ipEntry = Entry(first, width=25)
+ipEntry.grid(row=1, column=1)  
 
 loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
 
