@@ -9,14 +9,14 @@ import keyboard
 #Client
 def client_host():
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = "127.0.0.1"
     port = 8000
+    host = "127.0.0.1"
     my_socket.connect((host, port))
+
+    nickname = "James"
 
     root = Tk()
     root.title('Py:Chat Client')
-
-    nickname = "James"
 
     def thread_sending():
         button_message = e.get()
@@ -35,8 +35,16 @@ def client_host():
             socket_message = nickname + " : " + button_message
             my_socket.send(socket_message.encode())
 
+    def donothing():
+        print("hi")
 
-    w = Menu(root)
+    menubar = Menu(root)
+    filemenu = Menu(menubar, tearoff=0)
+    filemenu.add_command(label="New", command=donothing)
+    filemenu.add_command(label="Open", command=donothing)
+    filemenu.add_command(label="Save", command=donothing)
+    filemenu.add_command(label="Save as...", command=donothing)
+    filemenu.add_command(label="Close", command=donothing)
 
     e = Entry(root, width=50)
     e.grid(row=3,column=1)
@@ -59,6 +67,9 @@ def client_host():
 
     root.mainloop()
 
+client_host()
+
+'''
 #Launcher
 def start_client():
     nameEntry.delete(0,END)
@@ -82,3 +93,4 @@ ipEntry.grid(row=1, column=1)
 loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
 
 first.mainloop()
+'''
