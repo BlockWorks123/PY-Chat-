@@ -65,6 +65,7 @@ def client_host():
     thread_send.start()
     thread_receive.start()
 
+    root.config(menu=menubar)
     root.mainloop()
 
 client_host()
