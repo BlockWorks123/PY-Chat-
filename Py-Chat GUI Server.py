@@ -27,7 +27,12 @@ def start_listenning_thread(client):
 #Client message receiver and broadcaster
 def listen_thread(client):
     while True:
+        print(broadcast_list)
         message = client.recv(1024).decode()
+        socket_client = socket.gethostname()
+        ip_socket_client = socket.gethostbyname(socket_client)
+        print(ip_socket_client)
+        print(socket_client)
         if message:
             print("Client Message>",message)
             broadcast(message)

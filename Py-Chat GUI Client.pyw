@@ -7,7 +7,7 @@ import os
 
 server_host = "127.0.0.1"
 #Client
-def client_host(server_host):
+def client_host():
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 8000
     host = server_host
