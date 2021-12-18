@@ -1,7 +1,6 @@
-# PY:Chat GUI Client 1.1
+# PY:Chat GUI Client 2.0
 
 Client Commands
 - /clear -- Clears terminal 
 - /help -- Shows list of commands
-- /shutdown -- Closes application
-
+- /shutdown -- Shutsdown Client
