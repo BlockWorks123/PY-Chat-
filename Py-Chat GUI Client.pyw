@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 1.2.1
+#PY:Chat GUI Client 4.1.2
 
 from tkinter import *
 import threading
@@ -20,16 +20,19 @@ def client_host():
     port = 8000
     my_socket.connect((host, port))
 
+    welcome_message = nickname + " : " + "Connected to the Server"
+    my_socket.send(welcome_message.encode())
+
     root = Tk()
     root.title('Py:Chat Client')
 
     def thread_sending():
         button_message = e.get()
-        if button_message == "":
-            return
-        elif button_message == "/clear":
+        if button_message == "/clear":
             list1.delete(0,END)
             e.delete(0,END)
+        elif button_message == "":
+            return
         elif button_message == "/help":
             list1.insert(END,"/help -- Shows list of commands")
             list1.insert(END,"/clear -- Clears console")
@@ -53,6 +56,7 @@ def client_host():
 
     def run_server():
         print("hi")
+
 
     menubar = Menu(root)
     filemenu = Menu(menubar, tearoff=0)
@@ -79,20 +83,21 @@ def start_client():
     client_host()
 
 first = Tk()  
-first.title('PY:Chat Launcher')
+first.title('PY:Chat')
 
 nameLabel = Label(first, text="Name: ")
 nameLabel.grid(row=0, column=0)
-nameEntry = Entry(first, width=25)
+nameEntry = Entry(first, width=28)
 nameEntry.grid(row=0, column=1)  
 
 ipLabel = Label(first,text="Address:")
 ipLabel.grid(row=1, column=0)  
-ipEntry = Entry(first, width=25)
+ipEntry = Entry(first, width=28)
 ipEntry.grid(row=1, column=1)
 
 ipEntry.insert(0,"127.0.0.1")
 
-loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
+loginButton = Button(first, text="Login", command=start_client)
+loginButton.grid(row=4, column=0,columnspan=2)  
 
 first.mainloop()
