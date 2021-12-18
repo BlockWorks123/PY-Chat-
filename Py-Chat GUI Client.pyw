@@ -3,24 +3,31 @@
 from tkinter import *
 import threading
 import socket
-import os
 
-server_host = "127.0.0.1"
 #Client
 def client_host():
+    nickname = nameEntry.get()
+    host = ipEntry.get()
+    nameEntry.delete(0,END)
+    ipEntry.delete(0,END)
+
+    if host == "":
+        host = "127.0.0.1"
+
+    first.destroy()
+
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 8000
-    host = server_host
     my_socket.connect((host, port))
-
-    nickname = "James"
 
     root = Tk()
     root.title('Py:Chat Client')
 
     def thread_sending():
         button_message = e.get()
-        if button_message == "/clear":
+        if button_message == "":
+            return
+        elif button_message == "/clear":
             list1.delete(0,END)
             e.delete(0,END)
         elif button_message == "/help":
@@ -46,7 +53,6 @@ def client_host():
 
     def run_server():
         print("hi")
-        os.system('Py-Chat GUI Server.py')
 
     menubar = Menu(root)
     filemenu = Menu(menubar, tearoff=0)
@@ -68,15 +74,9 @@ def client_host():
     root.config(menu=menubar)
     root.mainloop()
 
-client_host()
-
-'''
 #Launcher
 def start_client():
-    nameEntry.delete(0,END)
-    ipEntry.delete(0,END)
     client_host()
-    first.quit()
 
 first = Tk()  
 first.title('PY:Chat Launcher')
@@ -89,9 +89,10 @@ nameEntry.grid(row=0, column=1)
 ipLabel = Label(first,text="Address:")
 ipLabel.grid(row=1, column=0)  
 ipEntry = Entry(first, width=25)
-ipEntry.grid(row=1, column=1)  
+ipEntry.grid(row=1, column=1)
+
+ipEntry.insert(0,"127.0.0.1")
 
 loginButton = Button(first, text="Login", command=start_client).grid(row=4, column=0)  
 
 first.mainloop()
-'''

@@ -29,10 +29,6 @@ def listen_thread(client):
     while True:
         print(broadcast_list)
         message = client.recv(1024).decode()
-        socket_client = socket.gethostname()
-        ip_socket_client = socket.gethostbyname(socket_client)
-        print(ip_socket_client)
-        print(socket_client)
         if message:
             print("Client Message>",message)
             broadcast(message)
@@ -41,6 +37,10 @@ def listen_thread(client):
             return
 #Server "client diconnect" message
 def broadcast(message):
+    socket_client = socket.gethostname()
+    ip_socket_client = socket.gethostbyname(socket_client)
+    print(ip_socket_client)
+    print(socket_client)
     for client in broadcast_list:
         try:
             client.send(message.encode())
