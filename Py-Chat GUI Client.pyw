@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.1.2
+#PY:Chat GUI Client 3.1.2
 
 from tkinter import *
 import threading
