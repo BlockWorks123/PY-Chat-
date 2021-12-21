@@ -1,8 +1,9 @@
-#PY:Chat GUI Client 2.0
+#PY:Chat GUI Client 2.1
 
 from tkinter import *
 import threading
 import socket
+from typing import Literal
 
 #Client
 def client_host():
@@ -54,9 +55,11 @@ def client_host():
     list1 = Listbox(root, width=55, height=20)
     list1.grid(row=2,column=1,columnspan=2)
 
+    myscroll = Scrollbar(root) 
+    myscroll.grid(row=2,column=2)
+
     def run_server():
         print("hi")
-
 
     menubar = Menu(root)
     filemenu = Menu(menubar, tearoff=0)
