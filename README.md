@@ -1,3 +1,5 @@
-# PY:Chat GUI Client 3.3
+# PY:Chat GUI Client 3.4
 
-README will be added in 3.4
+Client Commands
+- /help --> Shows list of available commands
+- /clear --> Clears console chat messages
