@@ -1,6 +1,3 @@
-# PY:Chat GUI Client 2.0
+# PY:Chat GUI Client 3.2
 
-Client Commands
-- /clear -- Clears terminal 
-- /help -- Shows list of commands
-- /shutdown -- Shutsdown Client
+README will be added in 3.3

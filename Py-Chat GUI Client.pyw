@@ -1,10 +1,8 @@
-#PY:Chat GUI Client 3.1
+#PY:Chat GUI Client 3.2
 
-from sys import exec_prefix
 from tkinter import *
 import threading
 import socket
-from typing import Literal
 
 #Client
 def client_host():

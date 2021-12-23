@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 3.1
+#PY:Chat GUI Sever 3.2
 
 import threading
 import socket
@@ -22,7 +22,7 @@ def handle(client):
     while True:
         try:
             message = client.recv(1024)
-            broadcast(f'{nickname} : {message}'.encode('ascii'))
+            broadcast(f'{nickname} --> {message}'.encode('ascii'))
             print(message)
         except:
             clients.remove(client)
@@ -42,8 +42,8 @@ def receive():
         clients.append(client)
 
         print(f'Nickname of the client is {nickname}')
-        #broadcast(f'{nickname} Joined the chat'.encode('ascii'))
-        client.send(f'{nickname} joined the server'.encode('ascii'))
+        broadcast(f'{nickname} Joined the chat'.encode('ascii'))
+        #client.send(f'{nickname} joined the server'.encode('ascii'))
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
