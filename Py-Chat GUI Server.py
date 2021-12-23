@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 3.3
+#PY:Chat GUI Sever 3.4
 
 import threading
 import socket
@@ -21,8 +21,8 @@ def handle(client):
     nickname = nicknames[index]
     while True:
         try:
-            message = client.recv(1024)
-            broadcast(f'{nickname} --> {message}'.encode('ascii'))
+            message = client.recv(1024).decode()
+            broadcast(f'{nickname} : {message}'.encode('ascii'))
             print(message)
         except:
             clients.remove(client)

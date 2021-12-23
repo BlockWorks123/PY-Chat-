@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 3.3
+#PY:Chat GUI Client 3.4
 
 from tkinter import *
 import threading
@@ -25,10 +25,13 @@ def client_host():
 
     def thread_sending():
         button_message = e.get()
+        if button_message == "/help":
+            list1.insert(END, '/help --> Shows list of available commands')
+            list1.insert(END, '/clear --> Clears console chat messages')
         if button_message == "/clear":
             list1.delete(0,END)
         else:
-            my_socket.send(button_message.encode('ascii'))
+            my_socket.send(button_message.encode())
         e.delete(0,END)
 
     def thread_receiving():
@@ -40,7 +43,7 @@ def client_host():
                 else:
                     list1.insert(END, message)
             except:
-                list1.insert(END, 'ERROR 1 -- UNKNOWN ERROR OSCCURRED')
+                list1.insert(END, 'ERROR 1 --> UNKNOWN ERROR OCCURRED')
                 my_socket.close()
                 break
 
