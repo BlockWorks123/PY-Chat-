@@ -2,50 +2,54 @@
 
 import socket
 import threading
+from typing import Tuple
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ADDRESS = "127.0.0.1" 
 PORT = 8000
-broadcast_list = []
 my_socket.bind((ADDRESS, PORT))
+my_socket.listen()
+ 
+clients = []
+nicknames = []
 
-def accept_loop():
-    while True:
-        my_socket.listen()
-        client, client_address = my_socket.accept()
-        broadcast_list.append(client)
-        start_listenning_thread(client)
-
-#Socket listening for nickname     
-def start_listenning_thread(client):
-    client_thread = threading.Thread(
-            target=listen_thread,
-            args=(client,) #the list of argument for the function
-        )
-    client_thread.start()
-
-#Client message receiver and broadcaster
-def listen_thread(client):
-    while True:
-        print(broadcast_list)
-        message = client.recv(1024).decode()
-        if message:
-            print("Client Message>",message)
-            broadcast(message)
-        else:
-            print(f"client has been disconnected : {client}")
-            return
-#Server "client diconnect" message
 def broadcast(message):
-    socket_client = socket.gethostname()
-    ip_socket_client = socket.gethostbyname(socket_client)
-    print(ip_socket_client)
-    print(socket_client)
-    for client in broadcast_list:
-        try:
-            client.send(message.encode())
-        except:
-            broadcast_list.remove(client)
-            print("Client removed",client)
-accept_loop()      
+    for client in clients:
+        client.send(message)
 
+
+def handle(client):
+    while True:
+        index = clients.index(client)
+        nickname = nicknames[index]
+        try:
+            message = client.recv(1024)
+            broadcast(f'{nickname} : {message}')
+        except:
+            
+            clients.remove(client)
+            client.close()
+            
+            broadcast(f'{nickname} Left the chat!'.encode('ascii'))
+            nicknames.remove(nickname)
+            break
+
+def receive():
+    while True: 
+        client, address = my_socket.accept()
+        print(f'Connected with {str(address)}')
+        
+        client.send('NICK'.encode('ascii'))
+        nickname = client.recv(1024).decode('ascii')
+        nicknames.append(nickname)
+        clients.append(client)
+
+        print(f'Nickname of the client is {nickname}')
+        #broadcast(f'{nickname} Joined the chat'.encode('ascii'))
+        client.send(f'{nickname} joined the server'.encode('ascii'))
+
+        thread = threading.Thread(target=handle, args=(client,))
+        thread.start()
+
+print("Server is listening...")
+receive()
