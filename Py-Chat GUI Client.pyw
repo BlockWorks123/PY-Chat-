@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 2.1
+#PY:Chat GUI Client 3.1
 
 from sys import exec_prefix
 from tkinter import *

@@ -1,8 +1,7 @@
-#PY:Chat GUI Sever 2.1
+#PY:Chat GUI Sever 3.1
 
-import socket
 import threading
-from typing import Tuple
+import socket
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ADDRESS = "127.0.0.1" 
@@ -13,23 +12,21 @@ my_socket.listen()
 clients = []
 nicknames = []
 
-def broadcast(message):
+def broadcast(message_send):
     for client in clients:
-        client.send(message)
-
+        client.send(message_send)
 
 def handle(client):
+    index = clients.index(client)
+    nickname = nicknames[index]
     while True:
-        index = clients.index(client)
-        nickname = nicknames[index]
         try:
             message = client.recv(1024)
-            broadcast(f'{nickname} : {message}')
+            broadcast(f'{nickname} : {message}'.encode('ascii'))
+            print(message)
         except:
-            
             clients.remove(client)
             client.close()
-            
             broadcast(f'{nickname} Left the chat!'.encode('ascii'))
             nicknames.remove(nickname)
             break
