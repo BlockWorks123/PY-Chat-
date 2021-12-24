@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 3.4.1
+#PY:Chat GUI Sever 3.4.2
 
 import threading
 import socket
@@ -23,7 +23,9 @@ def handle(client):
         try:
             message = client.recv(1024).decode()
             if message == "/ping":
-                client.send(f'Hello {nickname}'.encode('ascii'))           
+                client.send(f'Server : Hello {nickname}'.encode('ascii'))
+            elif message == "/info":
+                client.send(f'IP : {client} Nickname : {nickname}'.encode('ascii'))                       
             else:    
                 broadcast(f'{nickname} : {message}'.encode('ascii'))
                 print(message)
