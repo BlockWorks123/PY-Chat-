@@ -1,10 +1,10 @@
-#PY:Chat GUI Sever 3.4.2
+#PY:Chat GUI Sever 3.4.3
 
 import threading
 import socket
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ADDRESS = "127.0.0.1" 
+ADDRESS = "192.168.0.33" 
 PORT = 8000
 my_socket.bind((ADDRESS, PORT))
 my_socket.listen()

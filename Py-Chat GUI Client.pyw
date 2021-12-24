@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 3.4.2
+#PY:Chat GUI Client 3.4.3
 
 from tkinter import *
 import threading
@@ -28,6 +28,7 @@ def client_host():
         if button_message == "/help":
             list1.insert(END, '/help --> Shows list of available commands')
             list1.insert(END, '/clear --> Clears console chat messages')
+            list1.insert(END, '/info --> Shows IP and Nickname of Client')
         elif button_message == "/clear":
             list1.delete(0,END)
         else:
@@ -81,7 +82,7 @@ ipLabel.grid(row=1, column=0)
 ipEntry = Entry(first, width=28)
 ipEntry.grid(row=1, column=1)
 
-ipEntry.insert(0,"127.0.0.1")
+ipEntry.insert(0,"192.168.0.33")
 
 loginButton = Button(first, text="Login", command=start_client)
 loginButton.grid(row=4, column=0,columnspan=2)  
