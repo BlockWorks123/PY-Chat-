@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 3.4
+#PY:Chat GUI Sever 3.4.1
 
 import threading
 import socket
@@ -22,8 +22,11 @@ def handle(client):
     while True:
         try:
             message = client.recv(1024).decode()
-            broadcast(f'{nickname} : {message}'.encode('ascii'))
-            print(message)
+            if message == "/ping":
+                client.send(f'Hello {nickname}'.encode('ascii'))           
+            else:    
+                broadcast(f'{nickname} : {message}'.encode('ascii'))
+                print(message)
         except:
             clients.remove(client)
             client.close()
@@ -35,8 +38,8 @@ def receive():
     while True: 
         client, address = my_socket.accept()
         print(f'Connected with {str(address)}')
-        
-        client.send('NICK'.encode('ascii'))
+    
+        client.send('%nickname%'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
         nicknames.append(nickname)
         clients.append(client)

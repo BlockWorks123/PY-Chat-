@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 3.4
+#PY:Chat GUI Client 3.4.1
 
 from tkinter import *
 import threading
@@ -28,7 +28,7 @@ def client_host():
         if button_message == "/help":
             list1.insert(END, '/help --> Shows list of available commands')
             list1.insert(END, '/clear --> Clears console chat messages')
-        if button_message == "/clear":
+        elif button_message == "/clear":
             list1.delete(0,END)
         else:
             my_socket.send(button_message.encode())
@@ -38,7 +38,7 @@ def client_host():
         while True:
             try:
                 message = my_socket.recv(1024).decode('ascii')
-                if message == "NICK":
+                if message == "%nickname%":
                     my_socket.send(nickname.encode('ascii'))
                 else:
                     list1.insert(END, message)
