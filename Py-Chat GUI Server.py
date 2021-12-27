@@ -1,5 +1,8 @@
-#PY:Chat GUI Sever 4.0
+#PY:Chat GUI Sever 4.1
 
+#pip install better_profanity
+
+from better_profanity import profanity
 import threading
 import socket
 
@@ -24,6 +27,7 @@ def handle(client):
     while True:
         try:
             message = client.recv(1024).decode()
+            message = profanity.censor(message)
             if message == "/ping":
                 client.send(f'Server : Hello {nickname}'.encode('ascii'))
             elif message == "/info":
@@ -47,17 +51,12 @@ def receive():
         nickname = client.recv(1024).decode('ascii')
         nicknames.append(nickname)
         clients.append(client)
-        
-        if nickname.lower() == "admin":
-            client.send('%password%'.encode('ascii'))
-            password = client.recv(1024).decode('ascii')
-            print(f'Password == {password}')
-        else:
-            print(f'Nickname of the client is {nickname}')
-            broadcast(f'{nickname} Joined the chat'.encode('ascii'))
 
-            thread = threading.Thread(target=handle, args=(client,))
-            thread.start()
+        print(f'Nickname of the client is {nickname}')
+        broadcast(f'{nickname} Joined the chat'.encode('ascii'))
+
+        thread = threading.Thread(target=handle, args=(client,))
+        thread.start()
 
 print("Server is listening...")
 receive()
