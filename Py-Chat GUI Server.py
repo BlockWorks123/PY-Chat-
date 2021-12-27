@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 3.4.3
+#PY:Chat GUI Sever 4.0
 
 import threading
 import socket
@@ -8,6 +8,8 @@ ADDRESS = "192.168.0.33"
 PORT = 8000
 my_socket.bind((ADDRESS, PORT))
 my_socket.listen()
+
+password = ""
  
 clients = []
 nicknames = []
@@ -45,13 +47,17 @@ def receive():
         nickname = client.recv(1024).decode('ascii')
         nicknames.append(nickname)
         clients.append(client)
+        
+        if nickname.lower() == "admin":
+            client.send('%password%'.encode('ascii'))
+            password = client.recv(1024).decode('ascii')
+            print(f'Password == {password}')
+        else:
+            print(f'Nickname of the client is {nickname}')
+            broadcast(f'{nickname} Joined the chat'.encode('ascii'))
 
-        print(f'Nickname of the client is {nickname}')
-        broadcast(f'{nickname} Joined the chat'.encode('ascii'))
-        #client.send(f'{nickname} joined the server'.encode('ascii'))
-
-        thread = threading.Thread(target=handle, args=(client,))
-        thread.start()
+            thread = threading.Thread(target=handle, args=(client,))
+            thread.start()
 
 print("Server is listening...")
 receive()

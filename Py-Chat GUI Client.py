@@ -1,8 +1,11 @@
-#PY:Chat GUI Client 3.4.3
+#PY:Chat GUI Client 4.0
 
+from tkinter import simpledialog
 from tkinter import *
 import threading
 import socket
+
+password = ""
 
 #Client
 def client_host():
@@ -39,12 +42,16 @@ def client_host():
         while True:
             try:
                 message = my_socket.recv(1024).decode('ascii')
-                if message == "%nickname%":
+                if message == "%password%":
+                    password = simpledialog.askstring("Password", "Please enter password",parent=root)
+                    print("PASSWORD")
+                    print(password)
+                    my_socket.send(password.encode('ascii'))
+                elif message == "%nickname%":
                     my_socket.send(nickname.encode('ascii'))
                 else:
                     list1.insert(END, message)
             except:
-                list1.insert(END, 'ERROR 1 --> UNKNOWN ERROR OCCURRED')
                 my_socket.close()
                 break
 
