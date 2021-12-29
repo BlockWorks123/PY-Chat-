@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.3.3
+#PY:Chat GUI Sever 4.4
 
 #pip install better_profanity
 
@@ -26,10 +26,14 @@ def handle(client):
         try:
             message = client.recv(1024).decode()
             message = profanity.censor(message)
-            if message == "/ping":
-                client.send(f'Server : Hello {nickname}'.encode('ascii'))
-            elif message == "/info":
-                client.send(f'IP : {client} Nickname : {nickname}'.encode('ascii'))                       
+            if message.startswith('/'):
+                if nickname.upper() == "ADMIN" or nickname.upper() == "OWNER" or nickname.upper() == "MOD":
+                    if message.startswith('/kick'):     
+                        name_to_kick = message[6:]
+                        print(name_to_kick)
+                if message.startswith('/ban'):     
+                        name_to_ban = message[5:]
+                        print(name_to_ban)
             else:    
                 broadcast(f'{nickname} : {message}'.encode('ascii'))
                 print(message)
