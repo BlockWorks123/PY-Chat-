@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.1
+#PY:Chat GUI Sever 4.2
 
 #pip install better_profanity
 
@@ -11,8 +11,6 @@ ADDRESS = "192.168.0.33"
 PORT = 8000
 my_socket.bind((ADDRESS, PORT))
 my_socket.listen()
-
-password = ""
  
 clients = []
 nicknames = []
@@ -49,6 +47,13 @@ def receive():
     
         client.send('%nickname%'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
+        
+        if nickname.upper() == "ADMIN":
+            client.send('%password%'.encode('ascii'))
+            password = client.recv(1024).decode('ascii')
+            if password == "hello":
+                return
+
         nicknames.append(nickname)
         clients.append(client)
 
