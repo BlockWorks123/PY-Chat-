@@ -1,10 +1,12 @@
-#PY:Chat GUI Client 4.3
+#PY:Chat GUI Client 4.3.2
 
 from tkinter import *
+from tkinter import messagebox
 import threading
 import socket
 import time
-import os
+
+stop_thread = False
 
 #Client
 def client_host():
@@ -39,7 +41,6 @@ def client_host():
         def give_password():
             password = passEntry.get()
             my_socket.send(password.encode('ascii'))
-            time.sleep(6)
             password_tk.destroy()
 
         loginButton = Button(password_tk, text="Login", command=give_password)
@@ -62,12 +63,20 @@ def client_host():
 
     def thread_receiving():
         while True:
+            global stop_thread
+            if stop_thread:
+                break
             try:
                 message = my_socket.recv(1024).decode('ascii')
-                if message == "$nickname$":
+                if message == "%NICKNAME%":
                     my_socket.send(nickname.encode('ascii'))
-                elif message == "$password$":
-                    password_promt()
+                    next_message = my_socket.recv(1024).decode('ascii')
+                    if next_message == "%PASSWORD%":
+                        password_promt()
+                        if my_socket.recv(1024).decode('ascii') == '%REFUSE%':
+                            stop_thread = True
+                            if messagebox.showwarning("Incorrect Password", "Connection Refused Wrong Password"):               
+                                root.destroy()               
                 else:
                     list1.insert(END, message)
             except:

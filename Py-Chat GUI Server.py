@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.3
+#PY:Chat GUI Sever 4.3.2
 
 #pip install better_profanity
 
@@ -45,25 +45,28 @@ def receive():
         client, address = my_socket.accept()
         print(f'Connected with {str(address)}')
     
-        client.send('$nickname$'.encode('ascii'))
+        client.send('%NICKNAME%'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
-        nicknames.append(nickname)
-        clients.append(client)
 
         if nickname == "James":
-            client.send('$password$'.encode('ascii'))
+            client.send('%PASSWORD%'.encode('ascii'))
             password = client.recv(1024).decode('ascii')
-            print(password)
-            if password == "Password":
-                print("Password Correct")
-            else:
-                print("Password Incorrect")
+            
+            if password != "Password":
+                client.send('%REFUSE%'.encode('ascii'))
+                client.close()
+                continue
+
+        nicknames.append(nickname)
+        clients.append(client)
 
         print(f'Nickname of the client is {nickname}')
         broadcast(f'{nickname} Joined the chat'.encode('ascii'))
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
+
+
 
 print("Server is listening...")
 receive()
