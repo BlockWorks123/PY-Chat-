@@ -5,7 +5,6 @@ import threading
 import socket
 import time
 import os
-import sys
 
 #Client
 def client_host():
@@ -43,14 +42,8 @@ def client_host():
             time.sleep(6)
             password_tk.destroy()
 
-        def close_all():
-            os.execv(sys.argv[0], sys.argv)
-            return
-
         loginButton = Button(password_tk, text="Login", command=give_password)
-        loginButton.grid(row=4, column=0,columnspan=2)
-    
-        quitButton = Button(password_tk, text="Cancel", command=close_all)
+        loginButton.grid(row=4, column=0, columnspan=2)
 
         password_tk.mainloop()
     
@@ -60,6 +53,7 @@ def client_host():
             list1.insert(END, '/help --> Shows list of available commands')
             list1.insert(END, '/clear --> Clears console chat messages')
             list1.insert(END, '/info --> Shows IP and Nickname of Client')
+            list1.insert(END, '/ping --> Pings server')
         elif button_message == "/clear":
             list1.delete(0,END)
         else:
@@ -70,9 +64,9 @@ def client_host():
         while True:
             try:
                 message = my_socket.recv(1024).decode('ascii')
-                if message == "%nickname%":
+                if message == "$nickname$":
                     my_socket.send(nickname.encode('ascii'))
-                elif message == "%password%":
+                elif message == "$password$":
                     password_promt()
                 else:
                     list1.insert(END, message)

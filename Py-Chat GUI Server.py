@@ -45,13 +45,13 @@ def receive():
         client, address = my_socket.accept()
         print(f'Connected with {str(address)}')
     
-        client.send('%nickname%'.encode('ascii'))
+        client.send('$nickname$'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
         nicknames.append(nickname)
         clients.append(client)
 
         if nickname == "James":
-            client.send('%password%'.encode('ascii'))
+            client.send('$password$'.encode('ascii'))
             password = client.recv(1024).decode('ascii')
             print(password)
             if password == "Password":
