@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.4
+#PY:Chat GUI Client 4.3.4
 
 from tkinter import *
 from tkinter import messagebox
@@ -56,8 +56,10 @@ def client_host():
                 list1.insert(END, '/clear --> Clears console chat messages')
                 list1.insert(END, '/info --> Shows IP and Nickname of Client')
                 list1.insert(END, '/ping --> Pings server')
-            elif button_message.startswith('/clear'):
-                 list1.delete(0,END)
+            elif button_message == "/clear":
+                list1.delete(0,END)
+            else:
+                list1.insert(END, f'{button_message} is not a valid command')
         else:
             my_socket.send(button_message.encode())
         e.delete(0,END)
