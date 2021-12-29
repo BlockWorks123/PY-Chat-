@@ -3,6 +3,7 @@
 from tkinter import *
 import threading
 import socket
+import time
 
 #Client
 def client_host():
@@ -22,7 +23,29 @@ def client_host():
 
     root = Tk()
     root.title('Py:Chat Client')
+    
 
+    #Password 
+    def password_promt():
+        password_tk = Tk()  
+        password_tk.title('PY:Chat')
+
+        passLabel = Label(password_tk, text="Password: ")
+        passLabel.grid(row=0, column=0)
+        passEntry = Entry(password_tk, width=28, show="*")
+        passEntry.grid(row=0, column=1)  
+
+        def give_password():
+            password = passEntry.get()
+            my_socket.send(password.encode('ascii'))
+            time.sleep(3)
+            password_tk.quit()
+
+        loginButton = Button(password_tk, text="Login", command=give_password)
+        loginButton.grid(row=4, column=0,columnspan=2)  
+
+        password_tk.mainloop()
+    
     def thread_sending():
         button_message = e.get()
         if button_message == "/help":
@@ -41,9 +64,8 @@ def client_host():
                 message = my_socket.recv(1024).decode('ascii')
                 if message == "%nickname%":
                     my_socket.send(nickname.encode('ascii'))
-                    next_message = my_socket.recv(1024).decode('ascii')
-                    if next_message == "%password%":
-                        return
+                elif message == "%password%":
+                    password_promt()
                 else:
                     list1.insert(END, message)
             except:
