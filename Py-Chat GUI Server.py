@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.2
+#PY:Chat GUI Sever 4.3
 
 #pip install better_profanity
 
@@ -54,6 +54,10 @@ def receive():
             client.send('%password%'.encode('ascii'))
             password = client.recv(1024).decode('ascii')
             print(password)
+            if password == "Password":
+                print("Password Correct")
+            else:
+                print("Password Incorrect")
 
         print(f'Nickname of the client is {nickname}')
         broadcast(f'{nickname} Joined the chat'.encode('ascii'))

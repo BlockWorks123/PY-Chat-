@@ -1,9 +1,11 @@
-#PY:Chat GUI Client 4.2
+#PY:Chat GUI Client 4.3
 
 from tkinter import *
 import threading
 import socket
 import time
+import os
+import sys
 
 #Client
 def client_host():
@@ -38,11 +40,17 @@ def client_host():
         def give_password():
             password = passEntry.get()
             my_socket.send(password.encode('ascii'))
-            time.sleep(3)
-            password_tk.quit()
+            time.sleep(6)
+            password_tk.destroy()
+
+        def close_all():
+            os.execv(sys.argv[0], sys.argv)
+            return
 
         loginButton = Button(password_tk, text="Login", command=give_password)
-        loginButton.grid(row=4, column=0,columnspan=2)  
+        loginButton.grid(row=4, column=0,columnspan=2)
+    
+        quitButton = Button(password_tk, text="Cancel", command=close_all)
 
         password_tk.mainloop()
     
