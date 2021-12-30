@@ -1,9 +1,10 @@
-#PY:Chat GUI Client 4.3.4
+#PY:Chat GUI Client 4.4
 
 from tkinter import *
 from tkinter import messagebox
 import threading
 import socket
+import sys
 import time
 
 stop_thread = False
@@ -59,27 +60,26 @@ def client_host():
             elif button_message == "/clear":
                 list1.delete(0,END)
             else:
-                list1.insert(END, f'{button_message} is not a valid command')
+                my_socket.send(button_message.encode())
         else:
             my_socket.send(button_message.encode())
         e.delete(0,END)
 
     def thread_receiving():
         while True:
-            global stop_thread
-            if stop_thread:
-                break
             try:
                 message = my_socket.recv(1024).decode('ascii')
-                if message == "%NICKNAME%":
+                if message == "%KICK%":
+                    if messagebox.showwarning(" ", "Client was kicked by ADMIN"):    
+                        sys.exit()
+                elif message == "%NICKNAME%":
                     my_socket.send(nickname.encode('ascii'))
                     next_message = my_socket.recv(1024).decode('ascii')
                     if next_message == "%PASSWORD%":
                         password_promt()
                         if my_socket.recv(1024).decode('ascii') == '%REFUSE%':
-                            stop_thread = True
-                            if messagebox.showwarning("Incorrect Password", "Connection Refused Wrong Password"):               
-                                root.destroy()               
+                            if messagebox.showwarning(" ", "Connection Refused Wrong Password"):               
+                                sys.exit()
                 else:
                     list1.insert(END, message)
             except:
