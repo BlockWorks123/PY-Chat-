@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.4
+#PY:Chat GUI Sever 4.5
 
 #pip install better_profanity
 
@@ -31,16 +31,12 @@ def handle(client,address):
             if message.startswith('/'):
                 if message.startswith('/kick'):
                     if nickname.upper() == "ADMIN":
-                        command_arg = message.replace('/kick','')
+                        command_arg = message.replace('/kick ','')
+                        print(f'{message} was used by an ADMIN')
+                        print(command_arg)
                         kick_user(command_arg)
                     else:
                         client(f'You do not have permissions for that command')
-                elif message.startswith('/ban'):
-                    if nickname.upper() == "ADMIN":
-                        command_arg = message.replace('/ban ','')
-                        client.send(command_arg.encode('ascii'))
-                    else:
-                        client.send(f'You do not have permissions for that command'.encode('ascii'))
                 else:                       
                     client.send(f'{message} is not a valid command'.encode('ascii'))
             else:    
@@ -73,12 +69,10 @@ def receive():
         nicknames.append(nickname)
         clients.append(client)
 
-        print(f'Nickname of the client is {nickname}')
-        broadcast(f'{nickname} Joined the chat'.encode('ascii'))
-
         thread = threading.Thread(target=handle, args=(client,address))
         thread.start()
 
+        print(f'Nickname of the client is {nickname}')
         broadcast(f'{nickname} Joined the chat'.encode('ascii'))
 
 def kick_user(kick_arg):
@@ -88,7 +82,8 @@ def kick_user(kick_arg):
         clients.remove(client_to_kick)
         client_to_kick.send('%KICK%'.encode('ascii'))
         client_to_kick.close()
-
+        nicknames.remove(kick_arg)
+        broadcast(f'{kick_arg} was kicked by a ADMIN')
 
 print("Server is listening...")
 receive()

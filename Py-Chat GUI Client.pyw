@@ -1,10 +1,9 @@
-#PY:Chat GUI Client 4.4
+#PY:Chat GUI Client 4.5
 
 from tkinter import *
 from tkinter import messagebox
 import threading
 import socket
-import sys
 import time
 
 stop_thread = False
@@ -27,7 +26,6 @@ def client_host():
 
     root = Tk()
     root.title('Py:Chat Client')
-    
 
     #Password 
     def password_promt():
@@ -70,8 +68,7 @@ def client_host():
             try:
                 message = my_socket.recv(1024).decode('ascii')
                 if message == "%KICK%":
-                    if messagebox.showwarning(" ", "Client was kicked by ADMIN"):    
-                        sys.exit()
+                    messagebox.showwarning(" ", "Client was kicked by ADMIN")
                 elif message == "%NICKNAME%":
                     my_socket.send(nickname.encode('ascii'))
                     next_message = my_socket.recv(1024).decode('ascii')
@@ -79,7 +76,7 @@ def client_host():
                         password_promt()
                         if my_socket.recv(1024).decode('ascii') == '%REFUSE%':
                             if messagebox.showwarning(" ", "Connection Refused Wrong Password"):               
-                                sys.exit()
+                                exit()
                 else:
                     list1.insert(END, message)
             except:
