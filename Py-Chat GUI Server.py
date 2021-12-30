@@ -1,8 +1,7 @@
-#PY:Chat GUI Sever 4.5
+#PY:Chat GUI Sever 4.5.1
 
 #pip install better_profanity
 
-from tkinter.font import names
 from better_profanity import profanity
 import threading
 import socket
@@ -29,7 +28,11 @@ def handle(client,address):
             message = client.recv(1024).decode()
             message = profanity.censor(message)
             if message.startswith('/'):
-                if message.startswith('/kick'):
+                if message.startswith('/info'):
+                    client.send(f'IP: {address} Client: {nickname}'.encode('ascii'))
+                elif message.startswith('/ping'):
+                    client.send(f'Hello {nickname}'.encode('ascii'))
+                elif message.startswith('/kick'):
                     if nickname.upper() == "ADMIN":
                         command_arg = message.replace('/kick ','')
                         print(f'{message} was used by an ADMIN')
