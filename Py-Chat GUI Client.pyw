@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.6.2
+#PY:Chat GUI Client 4.6.3
 
 from tkinter import *
 from tkinter import messagebox
@@ -92,13 +92,13 @@ def client_host():
                 break
 
 
-    e = Entry(root, width=50)
+    e = Entry(root, width=55)
     e.grid(row=3,column=1)
     
     button1 = Button(root, text="Send", command=thread_sending)
     button1.grid(row=3,column=2)
     
-    list1 = Listbox(root, width=55, height=20)
+    list1 = Listbox(root, width=60, height=20)
     list1.grid(row=2,column=1,columnspan=2)
     list1.insert(END, f'{nickname} Joined the chat')
 
