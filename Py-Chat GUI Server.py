@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.6.1
+#PY:Chat GUI Sever 4.6.2
 
 #pip install better_profanity
 
@@ -64,6 +64,14 @@ def receive():
     
         client.send('%NICKNAME%'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
+
+        with open('bans.txt', 'r') as f:
+            bans = f.readlines()
+        
+        if nickname+'\n' in bans:
+            client.send('%BAN%'.encode('ascii'))
+            client.close()
+            continue
 
         if nickname == "ADMIN":
             client.send('%PASSWORD%'.encode('ascii'))

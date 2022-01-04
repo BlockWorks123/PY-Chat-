@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.6.1
+#PY:Chat GUI Client 4.6.2
 
 from tkinter import *
 from tkinter import messagebox
@@ -25,7 +25,7 @@ def client_host():
     my_socket.connect((host, port))
 
     root = Tk()
-    root.title(f'Py:Chat Client -- Nickname : {nickname}')
+    root.title(f'PY:Chat Client -- Nickname : {nickname}')
 
     #Password 
     def password_promt():
@@ -68,7 +68,11 @@ def client_host():
             try:
                 message = my_socket.recv(1024).decode('ascii')
                 if message == "%KICK%":
-                    messagebox.showwarning(" ", "Client was kicked by ADMIN")
+                    messagebox.showwarning("Connection Aborted", "Client was kicked by Admin")
+                elif message == "%BAN%":
+                    stop_thread = True
+                    if messagebox.showerror("Connection Refused", "You are banned from this Server"):
+                        exit()
                 elif message == "%BROADCAST%":
                     broadcast_message = my_socket.recv(1024).decode('ascii')
                     messagebox.showinfo("Broadcast", broadcast_message)
@@ -78,7 +82,8 @@ def client_host():
                     if next_message == "%PASSWORD%":
                         password_promt()
                         if my_socket.recv(1024).decode('ascii') == '%REFUSE%':
-                            if messagebox.showwarning(" ", "Connection Refused Wrong Password"):               
+                            stop_thread = True
+                            if messagebox.showwarning("Connection Refused", "Incorrect password Entered"):               
                                 exit()
                 else:
                     list1.insert(END, message)
