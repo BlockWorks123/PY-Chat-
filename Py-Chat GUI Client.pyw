@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.6
+#PY:Chat GUI Client 4.6.1
 
 from tkinter import *
 from tkinter import messagebox
@@ -25,7 +25,7 @@ def client_host():
     my_socket.connect((host, port))
 
     root = Tk()
-    root.title('Py:Chat Client')
+    root.title(f'Py:Chat Client -- Nickname : {nickname}')
 
     #Password 
     def password_promt():
