@@ -1,4 +1,4 @@
-# PY:Chat GUI Client 4.5.3
+# PY:Chat GUI Client 4.5.4
 
 Client Commands
 - /help --> Shows list of available commands
@@ -6,4 +6,5 @@ Client Commands
 
 Admin Commands
 - /kick {member} --> Kicks selected Member
-- /ban {member} --> Bans selected Member
+- /ban {member} --> Bans selected Member]
+- /broadcast {message} --> Broadcasts message to clients

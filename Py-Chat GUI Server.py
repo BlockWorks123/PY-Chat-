@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.5.3
+#PY:Chat GUI Sever 4.5.4
 
 #pip install better_profanity
 
@@ -7,7 +7,7 @@ import threading
 import socket
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ADDRESS = "192.168.102.254" 
+ADDRESS = "172.16.112.130"
 PORT = 8000
 my_socket.bind((ADDRESS, PORT))
 my_socket.listen()
@@ -32,14 +32,18 @@ def handle(client,address):
                     client.send(f'IP : {address} Client : {nickname}'.encode('ascii'))
                 elif message.startswith('/ping'):
                     client.send(f'Server : Hello {nickname}'.encode('ascii'))
+                elif message.startswith('/broadcast'):
+                    if nickname == "ADMIN":
+                        command_arg = message.replace('/broadcast ','')
+                        tell_all(command_arg)
+                    else:
+                        client.send(f'You do not have permissions for that command'.encode('ascii'))               
                 elif message.startswith('/kick'):
-                    if nickname.upper() == "ADMIN":
+                    if nickname == "ADMIN":
                         command_arg = message.replace('/kick ','')
-                        print(f'{message} was used by an ADMIN')
-                        print(command_arg)
                         kick_user(command_arg)
                     else:
-                        client(f'You do not have permissions for that command')
+                        client.send(f'You do not have permissions for that command'.encode('ascii'))
                 else:                       
                     client.send(f'{message} is not a valid command'.encode('ascii'))
             else:    
@@ -60,10 +64,9 @@ def receive():
         client.send('%NICKNAME%'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
 
-        if nickname.upper() == "ADMIN":
+        if nickname == "ADMIN":
             client.send('%PASSWORD%'.encode('ascii'))
             password = client.recv(1024).decode('ascii')
-            
             if password != "Password":
                 client.send('%REFUSE%'.encode('ascii'))
                 client.close()
@@ -72,21 +75,25 @@ def receive():
         nicknames.append(nickname)
         clients.append(client)
 
-        thread = threading.Thread(target=handle, args=(client,address))
-        thread.start()
-
         print(f'Nickname of the client is {nickname}')
         broadcast(f'{nickname} Joined the chat'.encode('ascii'))
 
-def kick_user(kick_arg):
-    if kick_arg in nicknames:
-        name_index = nicknames.index(kick_arg)
+        thread = threading.Thread(target=handle, args=(client,address))
+        thread.start()
+
+def tell_all(message_tell):
+    return
+
+def kick_user(name):
+    if name in nicknames:
+        name_index = nicknames.index(name)
         client_to_kick = clients[name_index]
         clients.remove(client_to_kick)
+        print(clients)
         client_to_kick.send('%KICK%'.encode('ascii'))
         client_to_kick.close()    
-        nicknames.remove(kick_arg)
-        broadcast(f'{kick_arg} was kicked by a ADMIN') 
+        nicknames.remove(name)
+        #broadcast(f'{name} was kicked by a ADMIN')
 
 print("Server is listening...")
 receive()
