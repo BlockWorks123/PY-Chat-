@@ -8,5 +8,4 @@ Client Commands
 
 Admin Commands
 - /kick {member} --> Kicks selected Member
-- /ban {member} --> Bans selected Member
 - /broadcast {message} --> Broadcasts message to clients

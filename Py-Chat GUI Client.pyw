@@ -25,7 +25,7 @@ def client_host():
     my_socket.connect((host, port))
 
     root = Tk()
-    root.title(f'PY:Chat Client - Nickname : {nickname}')
+    root.title(f'PY:Chat Client -- Nickname : {nickname}')
 
     #Password 
     def password_promt():
