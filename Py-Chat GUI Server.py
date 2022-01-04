@@ -1,13 +1,14 @@
-#PY:Chat GUI Sever 4.5.1
+#PY:Chat GUI Sever 4.5.2
 
 #pip install better_profanity
 
 from better_profanity import profanity
 import threading
 import socket
+import time
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ADDRESS = "192.168.0.33" 
+ADDRESS = "192.168.102.254" 
 PORT = 8000
 my_socket.bind((ADDRESS, PORT))
 my_socket.listen()
@@ -74,7 +75,7 @@ def receive():
 
         thread = threading.Thread(target=handle, args=(client,address))
         thread.start()
-
+        
         print(f'Nickname of the client is {nickname}')
         broadcast(f'{nickname} Joined the chat'.encode('ascii'))
 
@@ -84,9 +85,9 @@ def kick_user(kick_arg):
         client_to_kick = clients[name_index]
         clients.remove(client_to_kick)
         client_to_kick.send('%KICK%'.encode('ascii'))
-        client_to_kick.close()
+        client_to_kick.close()    
         nicknames.remove(kick_arg)
-        broadcast(f'{kick_arg} was kicked by a ADMIN')
+        broadcast(f'{kick_arg} was kicked by a ADMIN') 
 
 print("Server is listening...")
 receive()

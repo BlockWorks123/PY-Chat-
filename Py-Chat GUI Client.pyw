@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.5.1
+#PY:Chat GUI Client 4.5.2
 
 from tkinter import *
 from tkinter import messagebox
@@ -69,7 +69,6 @@ def client_host():
                 message = my_socket.recv(1024).decode('ascii')
                 if message == "%KICK%":
                     messagebox.showwarning(" ", "Client was kicked by ADMIN")
-                    root.destroy()
                 elif message == "%NICKNAME%":
                     my_socket.send(nickname.encode('ascii'))
                     next_message = my_socket.recv(1024).decode('ascii')
@@ -93,6 +92,7 @@ def client_host():
     
     list1 = Listbox(root, width=55, height=20)
     list1.grid(row=2,column=1,columnspan=2)
+    list1.insert(END, f'{nickname} Joined the chat')
 
     thread_send = threading.Thread(target=thread_sending)
     thread_receive = threading.Thread(target=thread_receiving)
@@ -118,7 +118,7 @@ ipLabel.grid(row=1, column=0)
 ipEntry = Entry(first, width=28)
 ipEntry.grid(row=1, column=1)
 
-ipEntry.insert(0,"192.168.0.33")
+ipEntry.insert(0,"192.168.102.254")
 
 loginButton = Button(first, text="Login", command=start_client)
 loginButton.grid(row=4, column=0,columnspan=2)  

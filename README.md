@@ -1,4 +1,5 @@
-# PY:Chat GUI Client 4.5.1
+# PY:Chat GUI Client 4.5.2
+
 Client Commands
 - /help --> Shows list of available commands
 - /clear --> Clears console chat messages
