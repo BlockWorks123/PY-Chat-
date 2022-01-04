@@ -67,7 +67,7 @@ def receive():
 
         with open('bans.txt', 'r') as f:
             bans = f.readlines()
-        
+            
         if nickname+'\n' in bans:
             client.send('%BAN%'.encode('ascii'))
             client.close()
