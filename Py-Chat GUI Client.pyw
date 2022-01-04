@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.5.4
+#PY:Chat GUI Client 4.6
 
 from tkinter import *
 from tkinter import messagebox
@@ -69,6 +69,9 @@ def client_host():
                 message = my_socket.recv(1024).decode('ascii')
                 if message == "%KICK%":
                     messagebox.showwarning(" ", "Client was kicked by ADMIN")
+                elif message == "%BROADCAST%":
+                    broadcast_message = my_socket.recv(1024).decode('ascii')
+                    messagebox.showinfo("Broadcast", broadcast_message)
                 elif message == "%NICKNAME%":
                     my_socket.send(nickname.encode('ascii'))
                     next_message = my_socket.recv(1024).decode('ascii')

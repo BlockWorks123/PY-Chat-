@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.5.4
+#PY:Chat GUI Sever 4.6
 
 #pip install better_profanity
 
@@ -50,11 +50,12 @@ def handle(client,address):
                 broadcast(f'{nickname} : {message}'.encode('ascii'))
                 print(f'{nickname} : {message}')
         except:
-            clients.remove(client)
-            client.close()
-            broadcast(f'{nickname} Left the chat!'.encode('ascii'))
-            nicknames.remove(nickname)
-            break
+            if client in clients:
+                clients.remove(client)
+                client.close()
+                broadcast(f'{nickname} Left the chat!'.encode('ascii'))
+                nicknames.remove(nickname)
+                break
 
 def receive():
     while True: 
@@ -82,7 +83,9 @@ def receive():
         thread.start()
 
 def tell_all(message_tell):
-    return
+    for client in clients:
+        client.send('%BROADCAST%'.encode('ascii'))
+        client.send(message_tell.encode('ascii'))
 
 def kick_user(name):
     if name in nicknames:
@@ -93,7 +96,7 @@ def kick_user(name):
         client_to_kick.send('%KICK%'.encode('ascii'))
         client_to_kick.close()    
         nicknames.remove(name)
-        #broadcast(f'{name} was kicked by a ADMIN')
+        broadcast(f'{name} was kicked by a ADMIN')
 
 print("Server is listening...")
 receive()
