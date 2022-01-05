@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.6.2
+#PY:Chat GUI Client 4.6.3
 
 from tkinter import *
 from tkinter import messagebox
@@ -126,7 +126,7 @@ ipLabel.grid(row=1, column=0)
 ipEntry = Entry(first, width=28)
 ipEntry.grid(row=1, column=1)
 
-ipEntry.insert(0,"172.16.112.130")
+ipEntry.insert(0,"192.168.0.38")
 
 loginButton = Button(first, text="Login", command=start_client)
 loginButton.grid(row=4, column=0,columnspan=2)  

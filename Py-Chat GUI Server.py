@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.6.2
+#PY:Chat GUI Sever 4.6.3
 
 #pip install better_profanity
 
@@ -7,7 +7,7 @@ import threading
 import socket
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ADDRESS = "172.16.112.130"
+ADDRESS = "192.168.0.38"
 PORT = 8000
 my_socket.bind((ADDRESS, PORT))
 my_socket.listen()
@@ -64,7 +64,7 @@ def receive():
     
         client.send('%NICKNAME%'.encode('ascii'))
         nickname = client.recv(1024).decode('ascii')
-
+        '''
         with open('bans.txt', 'r') as f:
             bans = f.readlines()
         
@@ -72,7 +72,7 @@ def receive():
             client.send('%BAN%'.encode('ascii'))
             client.close()
             continue
-
+            '''
         if nickname == "ADMIN":
             client.send('%PASSWORD%'.encode('ascii'))
             password = client.recv(1024).decode('ascii')
@@ -100,7 +100,6 @@ def kick_user(name):
         name_index = nicknames.index(name)
         client_to_kick = clients[name_index]
         clients.remove(client_to_kick)
-        print(clients)
         client_to_kick.send('%KICK%'.encode('ascii'))
         client_to_kick.close()    
         nicknames.remove(name)
