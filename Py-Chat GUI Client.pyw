@@ -1,10 +1,9 @@
-#PY:Chat GUI Client 4.6.3
+#PY:Chat GUI Client 4.7
 
 from tkinter import *
 from tkinter import messagebox
 import threading
 import socket
-import time
 
 stop_thread = False
 
@@ -26,6 +25,7 @@ def client_host():
 
     root = Tk()
     root.title(f'PY:Chat Client -- Nickname : {nickname}')
+    root.geometry('370x350')
 
     #Password 
     def password_promt():
@@ -49,6 +49,7 @@ def client_host():
     
     def thread_sending():
         button_message = e.get()
+        e.delete(0,END)
         if button_message.startswith('/'):
             if button_message.startswith('/help'):
                 list1.insert(END, '/help --> Shows list of available commands')
@@ -61,7 +62,6 @@ def client_host():
                 my_socket.send(button_message.encode())
         else:
             my_socket.send(button_message.encode())
-        e.delete(0,END)
 
     def thread_receiving():
         while True:
@@ -71,8 +71,7 @@ def client_host():
                     messagebox.showwarning("Connection Aborted", "Client was kicked by Admin")
                 elif message == "%BAN%":
                     stop_thread = True
-                    if messagebox.showerror("Connection Refused", "You are banned from this Server"):
-                        exit()
+                    messagebox.showerror("Connection Refused", "You are banned from this Server")
                 elif message == "%BROADCAST%":
                     broadcast_message = my_socket.recv(1024).decode('ascii')
                     messagebox.showinfo("Broadcast", broadcast_message)
@@ -83,8 +82,7 @@ def client_host():
                         password_promt()
                         if my_socket.recv(1024).decode('ascii') == '%REFUSE%':
                             stop_thread = True
-                            if messagebox.showwarning("Connection Refused", "Incorrect password Entered"):               
-                                exit()
+                            messagebox.showwarning("Connection Refused", "Incorrect password Entered")           
                 else:
                     list1.insert(END, message)
             except:
@@ -92,13 +90,13 @@ def client_host():
                 break
 
 
-    e = Entry(root, width=50)
+    e = Entry(root, width=55)
     e.grid(row=3,column=1)
     
     button1 = Button(root, text="Send", command=thread_sending)
     button1.grid(row=3,column=2)
     
-    list1 = Listbox(root, width=55, height=20)
+    list1 = Listbox(root, width=60, height=20)
     list1.grid(row=2,column=1,columnspan=2)
     list1.insert(END, f'{nickname} Joined the chat')
 
@@ -126,7 +124,7 @@ ipLabel.grid(row=1, column=0)
 ipEntry = Entry(first, width=28)
 ipEntry.grid(row=1, column=1)
 
-ipEntry.insert(0,"192.168.0.38")
+ipEntry.insert(0,"192.168.0.33")
 
 loginButton = Button(first, text="Login", command=start_client)
 loginButton.grid(row=4, column=0,columnspan=2)  
