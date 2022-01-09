@@ -1,4 +1,4 @@
-#PY:Chat GUI Sever 4.7
+#PY:Chat GUI Sever 4.7.1
 
 #pip install better_profanity
 

@@ -1,4 +1,4 @@
-#PY:Chat GUI Client 4.7
+#PY:Chat GUI Client 4.7.1
 
 from tkinter import *
 from tkinter import messagebox
@@ -86,7 +86,7 @@ def client_host():
                 else:
                     list1.insert(END, message)
             except:
-                my_socket.close()
+                #my_socket.close()
                 break
 
 
