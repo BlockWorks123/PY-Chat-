@@ -1,7 +1,8 @@
-#PY:Chat Server 5.1
+#PY:Chat Server 5.2
 
 #pip install better_profanity
 
+from os import name
 from better_profanity import profanity
 import threading
 import socket
@@ -39,11 +40,19 @@ def handle(client,address):
                         client.send(f'You do not have permissions for that command'.encode('ascii'))               
                 elif message.startswith('/kick'):
                     if nickname == "ADMIN":
-                        print('Test Kick')
                         command_arg = message.replace('/kick ','')
                         kick_user(command_arg)
                     else:
                         client.send(f'You do not have permissions for that command'.encode('ascii'))
+                elif message.startswith('/ban'):
+                    if nickname == "ADMIN":
+                        command_arg = message.replace('/ban ','')
+                        with open('ban_list.txt', 'a') as f:
+                            f.write(f'{command_arg}\n')
+                            broadcast(f'{command_arg} was banned'.encode())
+                    else:
+                        client.send(f'You do not have permissions for that command'.encode('ascii'))
+                
                 else:                       
                     client.send(f'{message} is not a valid command'.encode('ascii'))
             else:    
@@ -74,7 +83,7 @@ def receive():
             bans = f.readlines()
 
         if nickname+'\n' in bans:
-            client.send('BAN'.encode('ascii'))
+            client.send('%BAN%'.encode('ascii'))
             client.close()
             continue
 

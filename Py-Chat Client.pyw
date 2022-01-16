@@ -1,4 +1,4 @@
-#PY:Chat Client 5.1
+#PY:Chat Client 5.2
 
 from tkinter import *
 from tkinter import messagebox
@@ -69,7 +69,7 @@ def client_host():
                 message = my_socket.recv(1024).decode('ascii')
                 if message == "%KICK%":
                     stop_thread = True
-                    messagebox.showwarning("Connection Aborted", "Client was kicked by Admin")
+                    messagebox.showwarning("Connection Aborted", "Client was kicked from Server")
                 elif message == "%BAN%":
                     stop_thread = True
                     messagebox.showerror("Connection Refused", "You are banned from this Server")
@@ -87,7 +87,7 @@ def client_host():
                 else:
                     list1.insert(END, message)
             except:
-                #my_socket.close()
+                my_socket.close()
                 break
 
 

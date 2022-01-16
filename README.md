@@ -1,4 +1,4 @@
-# PY:Chat Client 5.1
+# PY:Chat Client 5.2
 
 Client Commands
 - /help --> Shows list of available commands
