@@ -1,4 +1,4 @@
-#PY:Chat Client 5.2
+#PY:Chat Client 5.3
 
 from tkinter import *
 from tkinter import messagebox

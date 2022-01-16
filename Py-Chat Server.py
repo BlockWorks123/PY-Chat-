@@ -1,4 +1,4 @@
-#PY:Chat Server 5.2
+#PY:Chat Server 5.3
 
 #pip install better_profanity
 
@@ -49,7 +49,7 @@ def handle(client,address):
                         command_arg = message.replace('/ban ','')
                         with open('ban_list.txt', 'a') as f:
                             f.write(f'{command_arg}\n')
-                            broadcast(f'{command_arg} was banned'.encode())
+                            broadcast(f'{command_arg} was banned'.encode('ascii'))
                     else:
                         client.send(f'You do not have permissions for that command'.encode('ascii'))
                 
@@ -86,7 +86,6 @@ def receive():
             client.send('%BAN%'.encode('ascii'))
             client.close()
             continue
-
 
         if nickname == "ADMIN":
             client.send('%PASSWORD%'.encode('ascii'))
