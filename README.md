@@ -1,4 +1,4 @@
-# PY:Chat GUI Client 4.7.1
+# PY:Chat Client 4.7.1
 
 Client Commands
 - /help --> Shows list of available commands
@@ -9,3 +9,4 @@ Client Commands
 Admin Commands
 - /kick {member} --> Kicks selected Member
 - /broadcast {message} --> Broadcasts message to clients
+ 
