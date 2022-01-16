@@ -1,4 +1,4 @@
-#PY:Chat Client 5.0
+#PY:Chat Client 5.1
 
 from tkinter import *
 from tkinter import messagebox
@@ -67,7 +67,6 @@ def client_host():
         while True:
             try:
                 message = my_socket.recv(1024).decode('ascii')
-                print(f'{nickname} : {message}')
                 if message == "%KICK%":
                     stop_thread = True
                     messagebox.showwarning("Connection Aborted", "Client was kicked by Admin")
