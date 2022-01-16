@@ -1,4 +1,4 @@
-#PY:Chat Server 4.7.2
+#PY:Chat Server 5.0
 
 #pip install better_profanity
 
@@ -39,6 +39,7 @@ def handle(client,address):
                         client.send(f'You do not have permissions for that command'.encode('ascii'))               
                 elif message.startswith('/kick'):
                     if nickname == "ADMIN":
+                        print('Test Kick')
                         command_arg = message.replace('/kick ','')
                         kick_user(command_arg)
                     else:
@@ -55,6 +56,11 @@ def handle(client,address):
                 broadcast(f'{nickname} Left the chat!'.encode('ascii'))
                 nicknames.remove(nickname)
                 break
+
+def tell_all(message_tell):
+    for client in clients:
+        client.send('%BROADCAST%'.encode('ascii'))
+        client.send(message_tell.encode('ascii'))
 
 def receive():
     while True: 
@@ -81,11 +87,6 @@ def receive():
         thread = threading.Thread(target=handle, args=(client,address))
         thread.start()
 
-def tell_all(message_tell):
-    for client in clients:
-        client.send('%BROADCAST%'.encode('ascii'))
-        client.send(message_tell.encode('ascii'))
-
 def kick_user(name):
     if name in nicknames:
         name_index = nicknames.index(name)
@@ -94,7 +95,7 @@ def kick_user(name):
         client_to_kick.send('%KICK%'.encode('ascii'))
         client_to_kick.close()    
         nicknames.remove(name)
-        broadcast(f'{name} was kicked by a ADMIN')
+        broadcast(f'{name} was kicked by a ADMIN'.encode('ascii'))
 
 print("Server is listening...")
 receive()
