@@ -2,7 +2,6 @@
 
 #pip install better_profanity
 
-from os import name
 from better_profanity import profanity
 import threading
 import socket
