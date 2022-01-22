@@ -15,5 +15,6 @@ Future Changes
 - 1.1 --> Muiltiple ADMIN clients
 - 1.2 --> IP ban aswell as nickname ban
 - 1.3+ --> No planned future realise's
+
  
  
