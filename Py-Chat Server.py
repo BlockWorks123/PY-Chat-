@@ -1,4 +1,4 @@
-#PY:Chat Server 5.0
+#PY:Chat Server 5.1
 
 #pip install better_profanity
 
@@ -14,6 +14,9 @@ my_socket.listen()
 
 clients = []
 nicknames = []
+
+usernames = ["James", "Harry"]
+passwords = ["Password", "Password"]
 
 def broadcast(message_send):
     for client in clients:
@@ -32,22 +35,23 @@ def handle(client,address):
                 elif message.startswith('/ping'):
                     client.send(f'Server : Hello {nickname}'.encode('ascii'))
                 elif message.startswith('/broadcast'):
-                    if nickname == "ADMIN":
+                    if nickname in usernames:
                         command_arg = message.replace('/broadcast ','')
                         tell_all(command_arg)
                     else:
                         client.send(f'You do not have permissions for that command'.encode('ascii'))               
                 elif message.startswith('/kick'):
-                    if nickname == "ADMIN":
+                    if nickname in usernames:
                         command_arg = message.replace('/kick ','')
                         kick_user(command_arg)
                     else:
                         client.send(f'You do not have permissions for that command'.encode('ascii'))
                 elif message.startswith('/ban'):
-                    if nickname == "ADMIN":
+                    if nickname in usernames:
                         command_arg = message.replace('/ban ','')
                         with open('ban_list.txt', 'a') as f:
                             f.write(f'{command_arg}\n')
+                            client.send('%BAN%'.encode('ascii'))
                             broadcast(f'{command_arg} was banned'.encode('ascii'))
                     else:
                         client.send(f'You do not have permissions for that command'.encode('ascii'))
@@ -86,10 +90,12 @@ def receive():
             client.close()
             continue
 
-        if nickname == "ADMIN":
+        if nickname in usernames:
+            index_pass = usernames.index(nickname)
+            password_client = passwords[index_pass]
             client.send('%PASSWORD%'.encode('ascii'))
             password = client.recv(1024).decode('ascii')
-            if password != "Password":
+            if password != password_client:
                 client.send('%REFUSE%'.encode('ascii'))
                 client.close()
                 continue
